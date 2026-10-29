@@ -38,7 +38,7 @@ const homeHref = url('home', lang);
           <div class="dd-panel">
             <ul>
               {compareKeys.map((k) => (
-                <li><a href={url(k, lang)} class="dd-item dd-simple"><span><b>FlowBoard vs {competitors[k.replace('cmp-', '') as keyof typeof competitors]}</b></span></a></li>
+                <li><a href={url(k, lang)} class="dd-item dd-simple"><span><b>Firmatú Documento vs {competitors[k.replace('cmp-', '') as keyof typeof competitors]}</b></span></a></li>
               ))}
             </ul>
           </div>
@@ -70,7 +70,7 @@ const homeHref = url('home', lang);
       <p class="mm-h">{t.compare}</p>
       <ul class="mm-list">
         {compareKeys.map((k) => (
-          <li><a href={url(k, lang)}><Icon name="arrow-right" size={16} />FlowBoard vs {competitors[k.replace('cmp-', '') as keyof typeof competitors]}</a></li>
+          <li><a href={url(k, lang)}><Icon name="arrow-right" size={16} />Firmatú Documento vs {competitors[k.replace('cmp-', '') as keyof typeof competitors]}</a></li>
         ))}
       </ul>
       <ul class="mm-list mm-main">
@@ -86,7 +86,7 @@ const homeHref = url('home', lang);
 
 <style is:global>
   #nav.is-stuck #nav-bar, #nav.menu-open #nav-bar {
-    background: rgba(14, 14, 18, 0.72);
+    background: rgba(10, 20, 36, 0.82);
     border-color: var(--color-line);
     backdrop-filter: blur(20px) saturate(1.4);
     box-shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.05);
@@ -95,7 +95,7 @@ const homeHref = url('home', lang);
   .nl:hover, .dd:focus-within > .nl, .dd:hover > .nl { color: #fff; }
   .chev { transition: transform .3s var(--ease-soft); } .dd:hover .chev, .dd:focus-within .chev { transform: rotate(180deg); }
   .dd { position: relative; }
-  .dd-panel { position: absolute; left: 50%; top: 100%; z-index: 10; min-width: 240px; padding: 8px; margin-top: 10px; border-radius: 20px; background: rgba(17,17,21,.96); backdrop-filter: blur(24px); box-shadow: 0 30px 80px -20px rgba(0,0,0,.9), inset 0 0 0 1px var(--color-line-strong); opacity: 0; visibility: hidden; transform: translate(-50%, 8px); transition: opacity .25s, transform .35s var(--ease-soft), visibility .25s; }
+  .dd-panel { position: absolute; left: 50%; top: 100%; z-index: 10; min-width: 240px; padding: 8px; margin-top: 10px; border-radius: 20px; background: rgba(16,29,48,.97); backdrop-filter: blur(24px); box-shadow: 0 30px 80px -20px rgba(0,0,0,.9), inset 0 0 0 1px var(--color-line-strong); opacity: 0; visibility: hidden; transform: translate(-50%, 8px); transition: opacity .25s, transform .35s var(--ease-soft), visibility .25s; }
   .dd::after { content: ''; position: absolute; left: 0; right: 0; top: 100%; height: 12px; }
   .dd:hover .dd-panel, .dd:focus-within .dd-panel { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
   .dd-wide { width: 560px; }
@@ -103,7 +103,7 @@ const homeHref = url('home', lang);
   .dd-item:hover { background: rgba(255,255,255,.06); }
   .dd-item b { display: block; font-size: .9rem; font-weight: 550; color: var(--color-fg); letter-spacing: -.01em; } .dd-item small { display: block; margin-top: 2px; font-size: .78rem; color: var(--color-fg-3); }
   .dd-simple { align-items: center; padding: 10px 14px; white-space: nowrap; }
-  .dd-ic { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; color: var(--color-accent-3); background: rgba(110,92,245,.14); box-shadow: inset 0 0 0 1px rgba(110,92,245,.28); }
+  .dd-ic { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; color: var(--color-accent-3); background: rgba(37,99,235,.14); box-shadow: inset 0 0 0 1px rgba(37,99,235,.28); }
 
   /* targets táctiles de 44px solo en pantallas táctiles: con mouse el nav queda igual */
   @media (pointer: coarse) { #nav-bar .btn-sm, #nav-bar .nl { min-height: 2.75rem; } #nav-bar .nl { min-width: 2.75rem; justify-content: center; } #nav-bar .btn-sm { height: 2.75rem; } }

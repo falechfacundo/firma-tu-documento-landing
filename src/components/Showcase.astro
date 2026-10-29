@@ -8,7 +8,7 @@ const H = home[lang];
 const c = H.showcase;
 const tags = H.board.tags;
 const steps = c.steps;
-const av: Record<string, string> = { SM: '#6e5cf5', MR: '#0ea5e9', LV: '#ec4899', DP: '#f59e0b' };
+const av: Record<string, string> = { SM: '#2563eb', MR: '#0ea5e9', LV: '#ec4899', DP: '#f59e0b' };
 // texto de cada avatar: blanco solo donde llega a 4.5:1 (violeta); oscuro sobre celeste, rosa y ámbar
 const avText: Record<string, string> = { SM: '#fff', MR: '#08080a', LV: '#08080a', DP: '#08080a' };
 const st: Record<string, [string, string]> = { todo: ['#858496', c.status.todo], prog: ['#38bdf8', c.status.prog], rev: ['#fbbf24', c.status.rev], done: ['#34d399', c.status.done] };
@@ -110,15 +110,15 @@ const bars = c.bars;
               <div class="sp-chart">
                 <svg viewBox="0 0 400 130" preserveAspectRatio="none">
                   <defs>
-                    <linearGradient id="sp-g" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#6e5cf5" stop-opacity=".45" /><stop offset="1" stop-color="#6e5cf5" stop-opacity="0" /></linearGradient>
+                    <linearGradient id="sp-g" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#2563eb" stop-opacity=".45" /><stop offset="1" stop-color="#2563eb" stop-opacity="0" /></linearGradient>
                   </defs>
                   {[26, 52, 78, 104].map((y) => <line x1="0" x2="400" y1={y} y2={y} stroke="rgba(255,255,255,.06)" />)}
                   <line x1="0" y1="14" x2="400" y2="124" stroke="rgba(255,255,255,.22)" stroke-dasharray="4 5" />
                   <path class="sp-area" d="M0,14 L50,30 L100,44 L150,50 L200,72 L250,80 L300,96 L300,130 L0,130Z" fill="url(#sp-g)" />
-                  <path class="sp-line" pathLength="1" d="M0,14 L50,30 L100,44 L150,50 L200,72 L250,80 L300,96" fill="none" stroke="#9b8bff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path class="sp-line" pathLength="1" d="M0,14 L50,30 L100,44 L150,50 L200,72 L250,80 L300,96" fill="none" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
                   <circle class="sp-dot" cx="300" cy="96" r="4.5" fill="#fff" />
                 </svg>
-                <div class="sp-legend"><span><i style="background:#9b8bff"></i>{c.sprint.real}</span><span><i style="background:rgba(255,255,255,.3)"></i>{c.sprint.ideal}</span></div>
+                <div class="sp-legend"><span><i style="background:#60a5fa"></i>{c.sprint.real}</span><span><i style="background:rgba(255,255,255,.3)"></i>{c.sprint.ideal}</span></div>
               </div>
             </div>
           </div>
@@ -136,17 +136,17 @@ const bars = c.bars;
   @media (hover: hover) { .sc-step:hover { color: var(--color-fg-2); } }
   .sc-step[aria-current='true'] { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); box-shadow: inset 0 0 0 1px var(--color-line-strong); color: var(--color-fg); }
   .sc-ic { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: var(--color-raise); box-shadow: inset 0 0 0 1px var(--color-line); transition: all .5s var(--ease-soft); }
-  .sc-step[aria-current='true'] .sc-ic { background: linear-gradient(135deg, #7c6bff, #5b48e6); color: #fff; box-shadow: 0 8px 24px -6px rgba(110,92,245,.8), inset 0 1px 0 rgba(255,255,255,.3); }
+  .sc-step[aria-current='true'] .sc-ic { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff; box-shadow: 0 8px 24px -6px rgba(37,99,235,.8), inset 0 1px 0 rgba(255,255,255,.3); }
   .sc-body { display: block; min-width: 0; }
   .sc-title { display: block; font-size: 1.15rem; font-weight: 600; letter-spacing: -0.025em; }
   .sc-text { display: block; overflow: hidden; max-height: 0; opacity: 0; font-size: .95rem; line-height: 1.6; color: var(--color-fg-2); transition: max-height .7s var(--ease-soft), opacity .5s, margin .5s; }
   .sc-step[aria-current='true'] .sc-text { max-height: 10rem; opacity: 1; margin-top: 8px; }
   .sc-bar { display: block; height: 2px; margin-top: 0; border-radius: 4px; background: rgba(255,255,255,.08); overflow: hidden; max-height: 0; transition: max-height .4s, margin .4s; }
   .sc-step[aria-current='true'] .sc-bar { max-height: 2px; margin-top: 14px; }
-  .sc-bar i { display: block; height: 100%; width: 100%; transform-origin: 0 50%; transform: scaleX(var(--p, 0)); background: linear-gradient(90deg, #6e5cf5, #c4baff); }
+  .sc-bar i { display: block; height: 100%; width: 100%; transform-origin: 0 50%; transform: scaleX(var(--p, 0)); background: linear-gradient(90deg, #2563eb, #bfdbfe); }
 
-  .sc-win { position: relative; border-radius: 20px; background: #0e0e12; box-shadow: 0 0 0 1px rgba(255,255,255,.09), 0 50px 100px -30px rgba(0,0,0,.9), 0 30px 90px -30px rgba(110,92,245,.4); overflow: hidden; }
-  .sc-win::before { content: ''; position: absolute; inset: -1px; border-radius: inherit; z-index: 0; background: radial-gradient(600px circle at 80% -10%, rgba(110,92,245,.18), transparent 60%); pointer-events: none; }
+  .sc-win { position: relative; border-radius: 20px; background: #0e0e12; box-shadow: 0 0 0 1px rgba(255,255,255,.09), 0 50px 100px -30px rgba(0,0,0,.9), 0 30px 90px -30px rgba(37,99,235,.4); overflow: hidden; }
+  .sc-win::before { content: ''; position: absolute; inset: -1px; border-radius: inherit; z-index: 0; background: radial-gradient(600px circle at 80% -10%, rgba(37,99,235,.18), transparent 60%); pointer-events: none; }
   .sc-chrome { position: relative; z-index: 1; display: flex; align-items: center; gap: 6px; padding: 12px 16px; background: #0a0a0d; border-bottom: 1px solid var(--color-line); }
   .sc-chrome i { width: 10px; height: 10px; border-radius: 9px; background: #26262e; }
   .sc-chrome span { margin-left: 10px; font-family: var(--font-mono); font-size: 11px; color: var(--color-fg-3); }

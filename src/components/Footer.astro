@@ -12,7 +12,7 @@ const n = ui[lang].nav;
 <footer class="border-t border-line">
   <div class="wrap grid gap-12 py-16 md:grid-cols-[1.4fr_repeat(4,1fr)]">
     <div>
-      <a href={url('home', lang)} class="text-white" aria-label="FlowBoard"><Logo size={26} /></a>
+      <a href={url('home', lang)} class="text-white" aria-label="Firmatú Documento"><Logo size={26} /></a>
       <p class="mt-4 max-w-[18rem] font-mono text-[0.7rem] uppercase leading-relaxed tracking-[0.14em] text-fg-3">{f.tagline}</p>
       <a href={switchHref} hreflang={lang === 'es' ? 'en' : 'es'} class="mt-6 inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-[0.85rem] text-fg-2 transition-colors hover:text-white">{f.lang}</a>
     </div>
@@ -47,7 +47,7 @@ const n = ui[lang].nav;
       </ul>
     </nav>
   </div>
-  <div class="wrap border-t border-line py-6 text-[0.8rem] text-fg-3">© {new Date().getFullYear()} FlowBoard. {f.rights}</div>
+  <div class="wrap border-t border-line py-6 text-[0.8rem] text-fg-3">© {new Date().getFullYear()} Firmatú Documento. {f.rights}</div>
 </footer>
 <style is:global>
   .fh { margin-bottom: 1rem; font-family: var(--font-mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--color-fg-3); }

@@ -46,7 +46,7 @@ const projects = c.pf.items;
             <svg viewBox="0 0 120 120">
               <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="9" />
               <circle class="okr-ring-fg" cx="60" cy="60" r="50" fill="none" stroke="url(#rg)" stroke-width="9" stroke-linecap="round" pathLength="100" transform="rotate(-90 60 60)" style="--v:70" />
-              <defs><linearGradient id="rg" x1="0" x2="1"><stop offset="0" stop-color="#c4baff" /><stop offset="1" stop-color="#6e5cf5" /></linearGradient></defs>
+              <defs><linearGradient id="rg" x1="0" x2="1"><stop offset="0" stop-color="#bfdbfe" /><stop offset="1" stop-color="#2563eb" /></linearGradient></defs>
             </svg>
             <div><b data-count-to="70">0</b><small>%</small></div>
           </div>
@@ -71,7 +71,7 @@ const projects = c.pf.items;
             <Icon name="git-commit-horizontal" size={16} class="text-fg-3" />
             <code>{c.git.commit} <em>#a8f3k2x</em></code>
           </div>
-          <svg class="gline" viewBox="0 0 20 40" preserveAspectRatio="none"><path d="M10 0 V40" stroke="url(#gg)" stroke-width="1.5" stroke-dasharray="3 4" /><defs><linearGradient id="gg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#6e5cf5" stop-opacity="0" /><stop offset="1" stop-color="#9b8bff" /></linearGradient></defs></svg>
+          <svg class="gline" viewBox="0 0 20 40" preserveAspectRatio="none"><path d="M10 0 V40" stroke="url(#gg)" stroke-width="1.5" stroke-dasharray="3 4" /><defs><linearGradient id="gg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#2563eb" stop-opacity="0" /><stop offset="1" stop-color="#60a5fa" /></linearGradient></defs></svg>
           <div class="linked"><span class="mtag" style="--c:#34d399"><i></i>Frontend</span><span>{c.git.task}</span><Icon name="check-check" size={15} class="ml-auto text-ok" /></div>
         </div>
       </article>
@@ -112,7 +112,7 @@ const projects = c.pf.items;
 <style is:global>
   .bcard { display: flex; flex-direction: column; padding: clamp(1.4rem, 2.4vw, 2rem); border-radius: 26px; background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)); box-shadow: inset 0 0 0 1px var(--color-line), inset 0 1px 0 rgba(255,255,255,.06); min-height: 22rem; }
   .bhead { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.4rem; }
-  .bic { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 11px; color: var(--color-accent-3); background: rgba(110,92,245,.14); box-shadow: inset 0 0 0 1px rgba(110,92,245,.3); }
+  .bic { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 11px; color: var(--color-accent-3); background: rgba(37,99,235,.14); box-shadow: inset 0 0 0 1px rgba(37,99,235,.3); }
   .btag { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--color-fg-3); }
   .bcard h3 { font-size: clamp(1.2rem, 1.7vw, 1.5rem); font-weight: 600; letter-spacing: -.03em; line-height: 1.2; text-wrap: balance; max-width: 22ch; }
   .bcard > p { margin-top: .6rem; color: var(--color-fg-2); font-size: .95rem; line-height: 1.55; max-width: 34ch; text-wrap: pretty; }
@@ -134,7 +134,7 @@ const projects = c.pf.items;
   .okr { display: flex; align-items: center; gap: 22px; }
   .okr-ring { position: relative; width: 118px; height: 118px; flex: none; }
   .okr-ring svg { width: 100%; height: 100%; }
-  .okr-ring-fg { stroke-dasharray: 100; stroke-dashoffset: 100; filter: drop-shadow(0 0 8px rgba(110,92,245,.7)); }
+  .okr-ring-fg { stroke-dasharray: 100; stroke-dashoffset: 100; filter: drop-shadow(0 0 8px rgba(37,99,235,.7)); }
   .bcard.in .okr-ring-fg { animation: ring 1.8s .2s var(--ease-soft) forwards; }
   @keyframes ring { to { stroke-dashoffset: calc(100 - var(--v)); } }
   .okr-ring > div { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; grid-auto-flow: column; align-items: baseline; }
@@ -148,7 +148,7 @@ const projects = c.pf.items;
 
   /* Git */
   .commit, .linked { display: flex; align-items: center; gap: 10px; padding: 11px 13px; border-radius: 11px; font-size: 12.5px; background: #0d0d11; box-shadow: inset 0 0 0 1px var(--color-line-strong); }
-  .commit code { font-family: var(--font-mono); font-size: 12px; color: var(--color-fg-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .commit em { font-style: normal; color: var(--color-accent-2); background: rgba(110,92,245,.15); padding: 1px 5px; border-radius: 5px; }
+  .commit code { font-family: var(--font-mono); font-size: 12px; color: var(--color-fg-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .commit em { font-style: normal; color: var(--color-accent-2); background: rgba(37,99,235,.15); padding: 1px 5px; border-radius: 5px; }
   .linked { background: rgba(52,211,153,.05); box-shadow: inset 0 0 0 1px rgba(52,211,153,.25); }
   .linked > span:nth-child(2) { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .gline { display: block; width: 20px; height: 34px; margin: 0 0 0 22px; }
@@ -162,7 +162,7 @@ const projects = c.pf.items;
   .live { position: relative; width: 9px; height: 9px; border-radius: 9px; background: #f87171; box-shadow: 0 0 12px #f87171; } .live::after { content: ''; position: absolute; inset: 0; border-radius: 9px; background: #f87171; animation: pulse-ring 1.6s ease-out infinite; }
   .wk { display: grid; grid-template-columns: repeat(7, 1fr); gap: 7px; height: 76px; margin-top: 14px; align-items: end; }
   .wk div { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 6px; height: 100%; }
-  .wk i { display: block; width: 100%; height: 0; border-radius: 6px 6px 3px 3px; background: linear-gradient(180deg, #9b8bff, #6e5cf5); opacity: .95; }
+  .wk i { display: block; width: 100%; height: 0; border-radius: 6px 6px 3px 3px; background: linear-gradient(180deg, #60a5fa, #2563eb); opacity: .95; }
   .bcard.in .wk i { animation: hgrow .9s calc(.2s + var(--i) * .07s) var(--ease-soft) forwards; }
   @keyframes hgrow { to { height: calc(var(--h) * .62); } }
   .wk span { font-size: 10px; color: var(--color-fg-3); font-family: var(--font-mono); }

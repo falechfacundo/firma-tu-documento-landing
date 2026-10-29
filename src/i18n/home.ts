@@ -32,21 +32,21 @@ export interface HomeCopy {
   cta: { h2: string; lead: string; primary: string; secondary: string };
 }
 
-const tagColors: Record<Tag, string> = { plan: '#9b8bff', design: '#f472b6', back: '#38bdf8', front: '#34d399', infra: '#fbbf24' };
+const tagColors: Record<Tag, string> = { plan: '#60a5fa', design: '#f472b6', back: '#38bdf8', front: '#34d399', infra: '#fbbf24' };
 export const tagColor = (t: Tag) => tagColors[t];
 
 const es: HomeCopy = {
   hero: {
     badge: 'Nuevo', badgeText: 'Integración con Git y tickets generados con IA',
     l1: 'Convertí trabajo', l2: 'complejo en un', l3: 'flujo claro.',
-    lead: 'FlowBoard une proyectos, equipos y progreso en un solo lugar: tableros Kanban, sprints, timeline, OKRs y time tracking. Rápido, ordenado y hecho para que el trabajo avance.',
+    lead: 'Firmatú Documento une proyectos, equipos y progreso en un solo lugar: tableros Kanban, sprints, timeline, OKRs y time tracking. Rápido, ordenado y hecho para que el trabajo avance.',
     cta1: 'Empezar gratis', cta2: 'Ver cómo funciona', note: 'Plan gratuito · Registro en 1 minuto',
     aria: 'Convertí trabajo complejo en un flujo claro.',
   },
   board: {
     nav: ['Dashboard', 'Mis tareas', 'Proyectos', 'Objetivos', 'Reportes', 'Equipo'], ws: 'Workspace · Estudio Norte',
     project: 'Lanzamiento v2', sprintSub: 'Sprint 12 · 8 días restantes', tabs: ['Tablero', 'Lista', 'Timeline', 'Sprints'], progress: 'Progreso',
-    url: 'flowboard.vercel.app/projects/lanzamiento-v2/board', preview: 'Vista previa animada del tablero de FlowBoard', cursor1: 'Sofía', cursor2: 'Lucía',
+    url: 'flowboard.vercel.app/projects/lanzamiento-v2/board', preview: 'Vista previa animada del tablero de Firmatú Documento', cursor1: 'Sofía', cursor2: 'Lucía',
     cols: ['Por hacer', 'En progreso', 'En revisión', 'Hecho'],
     tags: { plan: 'Planificación', design: 'Diseño', back: 'Backend', front: 'Frontend', infra: 'Infra' },
     cards: {
@@ -65,7 +65,7 @@ const es: HomeCopy = {
     ['briefcase', 'Portfolios'], ['timer', 'Time tracking'], ['git-branch', 'Integración Git'], ['sparkles', 'Tickets con IA'], ['folder', 'Archivos'], ['chart-column', 'Reportes'],
   ],
   showcase: {
-    eyebrow: 'Un producto, todas las vistas', h2a: 'Cada equipo trabaja distinto.', h2b: 'FlowBoard se adapta a todos.', label: 'Lanzamiento v2',
+    eyebrow: 'Un producto, todas las vistas', h2a: 'Cada equipo trabaja distinto.', h2b: 'Firmatú Documento se adapta a todos.', label: 'Lanzamiento v2',
     steps: [
       { icon: 'square-kanban', title: 'Tablero', text: 'Kanban con drag & drop. Creá, renombrá y coloreá tus columnas, y filtrá por prioridad, asignado, tipo o epic: los filtros se quedan donde los dejaste.' },
       { icon: 'list-checks', title: 'Lista', text: 'Todo el backlog en una tabla agrupada por sprint. Editá estado, prioridad y asignados por fila, o aplicá acciones en lote a decenas de tareas.' },
@@ -84,19 +84,19 @@ const es: HomeCopy = {
       ['Verificación de email', 'back', 'DP', 'done', '08 oct', ''], ['Tablero con drag & drop', 'front', 'MR', 'done', '05 oct', ''],
     ],
     weeks: ['Sem 41', 'Sem 42', 'Sem 43', 'Sem 44'], today: 'Hoy',
-    bars: [['Definir alcance', 0, 22, '#9b8bff'], ['Diseño del onboarding', 12, 28, '#f472b6'], ['Webhook de GitHub', 20, 34, '#38bdf8'], ['Timeline', 30, 30, '#34d399'], ['Reportes de tiempo', 42, 26, '#fbbf24'], ['QA y release', 60, 30, '#6e5cf5']],
+    bars: [['Definir alcance', 0, 22, '#60a5fa'], ['Diseño del onboarding', 12, 28, '#f472b6'], ['Webhook de GitHub', 20, 34, '#38bdf8'], ['Timeline', 30, 30, '#34d399'], ['Reportes de tiempo', 42, 26, '#fbbf24'], ['QA y release', 60, 30, '#2563eb']],
     sprint: { name: 'Sprint 12', goal: 'Objetivo: liberar integraciones y reportes', badge: 'Activo', done: 'Tareas completadas', progress: 'Progreso', days: 'Días restantes', real: 'Real', ideal: 'Ideal' },
     status: { todo: 'Por hacer', prog: 'En progreso', rev: 'En revisión', done: 'Hecho' },
   },
   bento: {
     eyebrow: 'Funciones', h2: 'Mucho más que un tablero de tareas.', lead: 'Objetivos, tiempo, código y portfolios conectados al trabajo diario, sin saltar entre cinco herramientas.',
-    ai: { tag: 'IA', h: 'Describí la idea. FlowBoard arma los tickets.', p: 'Pasá de un párrafo a epics, historias y tareas listas para el board, en segundos.', prompt: 'Necesitamos un checkout con pagos y emails', n: 43,
-      tickets: [['Epic', '#9b8bff', 'Checkout con pagos y confirmación por email'], ['Historia', '#38bdf8', 'Como cliente, quiero pagar con tarjeta'], ['Tarea', '#34d399', 'Crear endpoint de creación de orden'], ['Tarea', '#34d399', 'Plantilla de email de confirmación']] },
+    ai: { tag: 'IA', h: 'Describí la idea. Firmatú Documento arma los tickets.', p: 'Pasá de un párrafo a epics, historias y tareas listas para el board, en segundos.', prompt: 'Necesitamos un checkout con pagos y emails', n: 43,
+      tickets: [['Epic', '#60a5fa', 'Checkout con pagos y confirmación por email'], ['Historia', '#38bdf8', 'Como cliente, quiero pagar con tarjeta'], ['Tarea', '#34d399', 'Crear endpoint de creación de orden'], ['Tarea', '#34d399', 'Plantilla de email de confirmación']] },
     okr: { tag: 'OKRs', h: 'Objetivos que se conectan con el trabajo real.', p: 'Vinculá objetivos a proyectos y seguí los resultados clave con progreso visible para todo el equipo.',
-      krs: [['Activar 500 equipos', 72, '#9b8bff'], ['Reducir tiempo de onboarding a 5 min', 48, '#38bdf8'], ['NPS mayor a 50', 91, '#34d399']] },
+      krs: [['Activar 500 equipos', 72, '#60a5fa'], ['Reducir tiempo de onboarding a 5 min', 48, '#38bdf8'], ['NPS mayor a 50', 91, '#34d399']] },
     git: { tag: 'Git', h: 'Tus commits, en cada tarea.', p: 'Mencioná la clave de la tarea en el commit y queda vinculado solo.', commit: 'feat: exporta reportes', task: 'Reportes de tiempo por proyecto' },
     time: { tag: 'Tiempo', h: 'Time tracking sin salir de la tarea.', p: 'Iniciá el timer, marcá horas facturables y mirá los reportes.', days: 'LMXJVSD' },
-    pf: { tag: 'Portfolios', h: 'Todos tus proyectos, de un vistazo.', p: 'Agrupá proyectos en portfolios y seguí el avance general.', items: [['Lanzamiento v2', 68, '#6e5cf5'], ['App móvil', 34, '#38bdf8'], ['Rediseño de marca', 87, '#ec4899']] },
+    pf: { tag: 'Portfolios', h: 'Todos tus proyectos, de un vistazo.', p: 'Agrupá proyectos en portfolios y seguí el avance general.', items: [['Lanzamiento v2', 68, '#2563eb'], ['App móvil', 34, '#38bdf8'], ['Rediseño de marca', 87, '#ec4899']] },
   },
   flow: {
     eyebrow: 'El flujo completo', h2: 'De la idea al release, sin perder el hilo.',
@@ -108,7 +108,7 @@ const es: HomeCopy = {
     ],
   },
   details: {
-    eyebrow: 'Los detalles', h2: 'Pensado hasta el último píxel.', lead: 'Las pequeñas cosas que hacen que usar FlowBoard todos los días se sienta liviano.',
+    eyebrow: 'Los detalles', h2: 'Pensado hasta el último píxel.', lead: 'Las pequeñas cosas que hacen que usar Firmatú Documento todos los días se sienta liviano.',
     items: [
       ['command', 'Paleta de comandos', 'Navegá y ejecutá acciones desde el teclado, sin despegar las manos.'],
       ['bookmark', 'Vistas guardadas', 'Guardá tus combinaciones de filtros y volvé a ellas en un clic.'],
@@ -125,14 +125,14 @@ const en: HomeCopy = {
   hero: {
     badge: 'New', badgeText: 'Git integration and AI-generated tickets',
     l1: 'Turn complex', l2: 'work into a', l3: 'clear flow.',
-    lead: 'FlowBoard brings projects, teams and progress together: Kanban boards, sprints, timeline, OKRs and time tracking. Fast, organized and built to keep work moving.',
+    lead: 'Firmatú Documento brings projects, teams and progress together: Kanban boards, sprints, timeline, OKRs and time tracking. Fast, organized and built to keep work moving.',
     cta1: 'Get started free', cta2: 'See how it works', note: 'Free plan · Sign up in 1 minute',
     aria: 'Turn complex work into a clear flow.',
   },
   board: {
     nav: ['Dashboard', 'My tasks', 'Projects', 'Goals', 'Reports', 'Team'], ws: 'Workspace · Northwind Studio',
     project: 'Launch v2', sprintSub: 'Sprint 12 · 8 days left', tabs: ['Board', 'List', 'Timeline', 'Sprints'], progress: 'Progress',
-    url: 'flowboard.vercel.app/projects/launch-v2/board', preview: 'Animated preview of the FlowBoard board', cursor1: 'Sofia', cursor2: 'Lucy',
+    url: 'flowboard.vercel.app/projects/launch-v2/board', preview: 'Animated preview of the Firmatú Documento board', cursor1: 'Sofia', cursor2: 'Lucy',
     cols: ['To do', 'In progress', 'In review', 'Done'],
     tags: { plan: 'Planning', design: 'Design', back: 'Backend', front: 'Frontend', infra: 'Infra' },
     cards: {
@@ -151,7 +151,7 @@ const en: HomeCopy = {
     ['briefcase', 'Portfolios'], ['timer', 'Time tracking'], ['git-branch', 'Git integration'], ['sparkles', 'AI tickets'], ['folder', 'Files'], ['chart-column', 'Reports'],
   ],
   showcase: {
-    eyebrow: 'One product, every view', h2a: 'Every team works differently.', h2b: 'FlowBoard adapts to all of them.', label: 'Launch v2',
+    eyebrow: 'One product, every view', h2a: 'Every team works differently.', h2b: 'Firmatú Documento adapts to all of them.', label: 'Launch v2',
     steps: [
       { icon: 'square-kanban', title: 'Board', text: 'Kanban with drag & drop. Create, rename and color your columns, and filter by priority, assignee, type or epic: filters stay where you left them.' },
       { icon: 'list-checks', title: 'List', text: 'The whole backlog in a table grouped by sprint. Edit status, priority and assignees per row, or run bulk actions on dozens of tasks.' },
@@ -170,19 +170,19 @@ const en: HomeCopy = {
       ['Email verification', 'back', 'DP', 'done', 'Oct 8', ''], ['Drag & drop board', 'front', 'MR', 'done', 'Oct 5', ''],
     ],
     weeks: ['Wk 41', 'Wk 42', 'Wk 43', 'Wk 44'], today: 'Today',
-    bars: [['Define scope', 0, 22, '#9b8bff'], ['Onboarding design', 12, 28, '#f472b6'], ['GitHub webhook', 20, 34, '#38bdf8'], ['Timeline', 30, 30, '#34d399'], ['Time reports', 42, 26, '#fbbf24'], ['QA and release', 60, 30, '#6e5cf5']],
+    bars: [['Define scope', 0, 22, '#60a5fa'], ['Onboarding design', 12, 28, '#f472b6'], ['GitHub webhook', 20, 34, '#38bdf8'], ['Timeline', 30, 30, '#34d399'], ['Time reports', 42, 26, '#fbbf24'], ['QA and release', 60, 30, '#2563eb']],
     sprint: { name: 'Sprint 12', goal: 'Goal: ship integrations and reports', badge: 'Active', done: 'Tasks completed', progress: 'Progress', days: 'Days left', real: 'Actual', ideal: 'Ideal' },
     status: { todo: 'To do', prog: 'In progress', rev: 'In review', done: 'Done' },
   },
   bento: {
     eyebrow: 'Features', h2: 'Much more than a task board.', lead: 'Goals, time, code and portfolios connected to daily work, without hopping between five tools.',
-    ai: { tag: 'AI', h: 'Describe the idea. FlowBoard drafts the tickets.', p: 'Go from a paragraph to epics, stories and tasks ready for the board, in seconds.', prompt: 'We need a checkout with payments and emails', n: 42,
-      tickets: [['Epic', '#9b8bff', 'Checkout with payments and email confirmation'], ['Story', '#38bdf8', 'As a customer, I want to pay by card'], ['Task', '#34d399', 'Build the create-order endpoint'], ['Task', '#34d399', 'Confirmation email template']] },
+    ai: { tag: 'AI', h: 'Describe the idea. Firmatú Documento drafts the tickets.', p: 'Go from a paragraph to epics, stories and tasks ready for the board, in seconds.', prompt: 'We need a checkout with payments and emails', n: 42,
+      tickets: [['Epic', '#60a5fa', 'Checkout with payments and email confirmation'], ['Story', '#38bdf8', 'As a customer, I want to pay by card'], ['Task', '#34d399', 'Build the create-order endpoint'], ['Task', '#34d399', 'Confirmation email template']] },
     okr: { tag: 'OKRs', h: 'Goals connected to the real work.', p: 'Link goals to projects and follow key results with progress visible to the whole team.',
-      krs: [['Activate 500 teams', 72, '#9b8bff'], ['Cut onboarding time to 5 min', 48, '#38bdf8'], ['NPS above 50', 91, '#34d399']] },
+      krs: [['Activate 500 teams', 72, '#60a5fa'], ['Cut onboarding time to 5 min', 48, '#38bdf8'], ['NPS above 50', 91, '#34d399']] },
     git: { tag: 'Git', h: 'Your commits, on every task.', p: 'Mention the task key in the commit and it links itself.', commit: 'feat: export reports', task: 'Time reports per project' },
     time: { tag: 'Time', h: 'Time tracking without leaving the task.', p: 'Start the timer, mark billable hours and check the reports.', days: 'MTWTFSS' },
-    pf: { tag: 'Portfolios', h: 'All your projects, at a glance.', p: 'Group projects into portfolios and follow overall progress.', items: [['Launch v2', 68, '#6e5cf5'], ['Mobile app', 34, '#38bdf8'], ['Brand redesign', 87, '#ec4899']] },
+    pf: { tag: 'Portfolios', h: 'All your projects, at a glance.', p: 'Group projects into portfolios and follow overall progress.', items: [['Launch v2', 68, '#2563eb'], ['Mobile app', 34, '#38bdf8'], ['Brand redesign', 87, '#ec4899']] },
   },
   flow: {
     eyebrow: 'The full flow', h2: 'From idea to release, without losing the thread.',
@@ -194,7 +194,7 @@ const en: HomeCopy = {
     ],
   },
   details: {
-    eyebrow: 'The details', h2: 'Crafted down to the last pixel.', lead: 'The small things that make using FlowBoard every day feel light.',
+    eyebrow: 'The details', h2: 'Crafted down to the last pixel.', lead: 'The small things that make using Firmatú Documento every day feel light.',
     items: [
       ['command', 'Command palette', 'Navigate and run actions from the keyboard without lifting your hands.'],
       ['bookmark', 'Saved views', 'Save your filter combinations and get back to them in one click.'],

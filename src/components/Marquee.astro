@@ -6,7 +6,7 @@ interface Props { lang?: Lang }
 const { lang = 'es' } = Astro.props;
 const items = home[lang].marquee;
 ---
-<section class="relative border-y border-line bg-surface/40 py-7" aria-label="FlowBoard">
+<section class="relative border-y border-line bg-surface/40 py-7" aria-label="Firmatú Documento">
   <div class="overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_12%,#000_88%,transparent)]">
     <div class="flex w-max gap-3" style="animation:marquee 46s linear infinite">
       {[0, 1].map(() => (

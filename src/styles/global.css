@@ -7,19 +7,19 @@
   --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'Geist Mono Variable', ui-monospace, monospace;
 
-  --color-ink: #08080a;
-  --color-base: #0b0b0e;
-  --color-surface: #111114;
-  --color-card: #16161a;
-  --color-raise: #1c1c22;
+  --color-ink: #07111f;
+  --color-base: #0a1424;
+  --color-surface: #101d30;
+  --color-card: #142238;
+  --color-raise: #1b2b43;
   --color-line: rgba(255, 255, 255, 0.075);
   --color-line-strong: rgba(255, 255, 255, 0.14);
   --color-fg: #f4f3f8;
   --color-fg-2: #a3a2b3;
   --color-fg-3: #858496;
-  --color-accent: #6e5cf5;
-  --color-accent-2: #9b8bff;
-  --color-accent-3: #c4baff;
+  --color-accent: #2563eb;
+  --color-accent-2: #60a5fa;
+  --color-accent-3: #bfdbfe;
   --color-ok: #34d399;
   --color-warn: #fbbf24;
   --color-info: #38bdf8;
@@ -54,7 +54,7 @@ body {
   font-feature-settings: 'ss01', 'cv11';
 }
 
-::selection { background: rgba(110, 92, 245, 0.45); color: #fff; }
+::selection { background: rgba(37, 99, 235, 0.45); color: #fff; }
 
 /* ---------- layout ---------- */
 .wrap { width: 100%; max-width: 1200px; margin-inline: auto; padding-inline: var(--gutter); }
@@ -87,7 +87,7 @@ body {
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .grad-accent {
-  background: linear-gradient(100deg, #c4baff 0%, #8b7bff 45%, #6e5cf5 100%);
+  background: linear-gradient(100deg, #bfdbfe 0%, #60a5fa 45%, #2563eb 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 
@@ -107,19 +107,19 @@ body {
 
 .btn-primary {
   color: #fff;
-  background: linear-gradient(180deg, #8371ff 0%, #6e5cf5 55%, #5b48e6 100%);
+  background: linear-gradient(180deg, #3b82f6 0%, #2563eb 55%, #1d4ed8 100%);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.35),
     inset 0 -1px 0 rgba(0, 0, 0, 0.2),
-    0 0 0 1px rgba(110, 92, 245, 0.6),
-    0 10px 30px -8px rgba(110, 92, 245, 0.7);
+    0 0 0 1px rgba(37, 99, 235, 0.6),
+    0 10px 30px -8px rgba(37, 99, 235, 0.55);
 }
 .btn-primary::after {
   content: ''; position: absolute; inset: 0; z-index: -1;
   background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
   transform: translateX(-120%); transition: transform 0.9s var(--ease-soft);
 }
-@media (hover: hover) { .btn-primary:hover { box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 0 0 1px rgba(155,139,255,.8), 0 16px 44px -8px rgba(110, 92, 245, 0.95); } }
+@media (hover: hover) { .btn-primary:hover { box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 0 0 1px rgba(96,165,250,.8), 0 16px 44px -8px rgba(37, 99, 235, 0.8); } }
 @media (hover: hover) { .btn-primary:hover::after { transform: translateX(120%); } }
 
 .btn-ghost {
@@ -140,13 +140,13 @@ body {
 .spot { position: relative; isolation: isolate; overflow: hidden; }
 .spot::before {
   content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0;
-  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(139, 123, 255, 0.16), transparent 60%);
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(96, 165, 250, 0.16), transparent 60%);
   transition: opacity 0.5s;
 }
 .spot::after {
   content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0; border-radius: inherit;
   padding: 1px;
-  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(155, 139, 255, 0.75), transparent 65%);
+  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(96, 165, 250, 0.75), transparent 65%);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor; mask-composite: exclude;
   transition: opacity 0.5s;
@@ -184,4 +184,4 @@ body {
 
 .js-motion [data-hero-in] { opacity: 0; }
 
-.cta { background: radial-gradient(120% 100% at 50% 0%, #17142e 0%, #0e0d1a 55%, #0b0b0e 100%); box-shadow: inset 0 0 0 1px rgba(155,139,255,.22), inset 0 1px 0 rgba(255,255,255,.1), 0 60px 140px -40px rgba(110,92,245,.45); }
+.cta { background: radial-gradient(120% 100% at 50% 0%, #14294c 0%, #0d192b 55%, #0a1424 100%); box-shadow: inset 0 0 0 1px rgba(96,165,250,.22), inset 0 1px 0 rgba(255,255,255,.1), 0 60px 140px -40px rgba(37,99,235,.35); }

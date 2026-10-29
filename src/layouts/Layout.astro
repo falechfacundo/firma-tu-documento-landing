@@ -20,7 +20,7 @@ interface Props {
   breadcrumbs?: { name: string; href: string }[];
   publishedTime?: string;
 }
-const { title, description, lang = 'es', routeKey, alternates, ogType = 'website', ogImage = '/og.png', noindex = false, jsonLd = [], breadcrumbs, publishedTime } = Astro.props;
+const { title, description, lang = 'es', routeKey, alternates, ogType = 'website', ogImage = '/og.svg', noindex = false, jsonLd = [], breadcrumbs, publishedTime } = Astro.props;
 
 const site = Astro.site!;
 const abs = (p: string) => new URL(p, site).href;
@@ -44,14 +44,14 @@ const ld = [org, ...(crumbs ? [crumbs] : []), ...jsonLd];
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#0b0b0e" />
+    <meta name="theme-color" content="#0a1424" />
     <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'} />
     <link rel="canonical" href={canonical} />
     {alts.es && <link rel="alternate" hreflang="es" href={abs(alts.es)} />}
     {alts.en && <link rel="alternate" hreflang="en" href={abs(alts.en)} />}
     {alts.es && <link rel="alternate" hreflang="x-default" href={abs(alts.es)} />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta property="og:site_name" content={SITE_NAME} />
     <meta property="og:type" content={ogType} />
