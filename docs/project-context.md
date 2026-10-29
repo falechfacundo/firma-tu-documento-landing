@@ -2,71 +2,69 @@
 
 ## Producto
 
-**FlowBoard** es un software de gestión de proyectos: tableros Kanban, sprints, timeline, OKRs, time tracking,
-integración con Git y tickets generados con IA. Este repo es **solo la landing de marketing**. El producto vive en otro
-repo (`kanban-nextjs`) y se deploya en `PUBLIC_APP_URL`.
+**Firma tu Documento** es el nombre provisional usado por esta landing. La webapp hermana implementa una plataforma multi-tenant de firma electrónica, gestión documental, aprobaciones, plantillas, trazabilidad y gestión del ciclo de vida de acuerdos. La app usa Next.js 15, TypeScript, Prisma/PostgreSQL, BetterAuth, Supabase Storage y control de acceso RBAC.
 
-- **Público**: equipos que organizan proyectos y trabajo ("une proyectos, equipos y progreso en un solo lugar",
-  `src/i18n/home.ts`). No hay más segmentación definida en el código.
-- **Modelo**: plan Gratis ($0) y plan Equipos "Próximamente". El producto todavía **no cobra** (README).
-- **Idiomas**: español (default, sin prefijo: `/`) e inglés (`/en/`).
+La landing no debe presentar como disponibles funciones que solo aparecen en la estrategia o en el roadmap. Tomar las descripciones de producto del README de `firma-tu-documento-webapp` y de las pantallas/código actuales.
 
-## Páginas
+## Capacidades confirmadas en la webapp
 
-Registro de rutas en `src/i18n/routes.ts` (clave → ruta por idioma). 41 páginas en el build:
+- Sobres, destinatarios, campos de firma, flujo público de firma y descarga del documento final.
+- Documentos PDF con carpetas, etiquetas, versiones y hashes SHA-256.
+- Workflows secuenciales o paralelos con reglas `ANY`, `MAJORITY` y `ALL`, aprobaciones y escalamiento.
+- Plantillas con variables validadas, generación de PDF, publicación versionada y permisos.
+- Evidencias de firma encadenadas, certificado PDF/JSON y portal de verificación que expone hashes y metadatos.
+- OTP por email, políticas configurables, sellado temporal RFC 3161 y firma PKI opcionales.
+- Acuerdos con partes, obligaciones, vencimientos, renovaciones, adendas y línea de tiempo.
+- API REST v1 para sobres y plantillas; claves con scopes y webhooks firmados con reintentos.
 
-| Tipo | Rutas ES (EN equivalente bajo `/en/`) | Vista |
-|---|---|---|
-| Home | `/` | `src/views/Home.astro`: Hero, Marquee, Showcase, Bento, Flow, Details, CTA |
-| Funciones (7) | `/funciones/{tablero-kanban,sprints,timeline,okrs,time-tracking,integracion-git,tickets-con-ia}/` | `FeaturePage.astro` |
-| Precios | `/precios/` | `PricingPage.astro` |
-| Comparativas (4) | `/comparar/{jira,clickup,linear,trello}/` | `ComparePage.astro` |
-| Legal (2) | `/legal/{terminos,privacidad}/` | `LegalPage.astro` |
-| Contacto | `/contacto/` | `ContactPage.astro` (muestra un `mailto:`, sin formulario) |
-| Changelog | `/novedades/` | `ChangelogPage.astro` |
-| Blog | `/blog/` y `/blog/<slug>/` | `BlogIndex.astro`, `BlogPost.astro` |
-| 404 | `/404.html` | `noindex` |
+No hay billing ni planes comerciales implementados. La eficacia legal varía por documento y jurisdicción; no prometer validez legal universal ni asesoramiento jurídico.
 
-Las páginas del registro se generan desde `src/pages/[...slug].astro`; home y blog tienen rutas propias.
+## Páginas de la landing
 
-## Integraciones
+Registro en `src/i18n/routes.ts` (idioma predeterminado ES, EN bajo `/en/`):
 
-| Integración | Estado |
-|---|---|
-| Analytics | No definido |
-| Formularios | No definido (contacto por `mailto:`) |
-| CMS | No definido. El blog usa Content Collections de Astro: Markdown en `src/content/blog/{es,en}/`, unidos por `translationKey` |
-| SEO | `@astrojs/sitemap` (con alternates i18n), `robots.txt` generado (`src/pages/robots.txt.ts`), JSON-LD (`JsonLd.astro`) |
-| Hosting | Vercel (proyecto linkeado en `.vercel/`); cualquier host estático sirve |
+| Página | ES | EN | Vista |
+|---|---|---|---|
+| Inicio | `/` | `/en/` | `Home.astro` |
+| Firma electrónica | `/funciones/firma-electronica/` | `/en/features/electronic-signature/` | `FeaturePage.astro` |
+| Documentos | `/funciones/gestion-documental/` | `/en/features/document-management/` | `FeaturePage.astro` |
+| Aprobaciones y workflows | `/funciones/aprobaciones-y-flujos/` | `/en/features/approvals-and-workflows/` | `FeaturePage.astro` |
+| Plantillas | `/funciones/plantillas-documentales/` | `/en/features/document-templates/` | `FeaturePage.astro` |
+| Trazabilidad y cumplimiento | `/funciones/trazabilidad-y-cumplimiento/` | `/en/features/traceability-and-compliance/` | `FeaturePage.astro` |
+| Gestión de acuerdos | `/funciones/gestion-de-acuerdos/` | `/en/features/agreement-management/` | `FeaturePage.astro` |
+| API e integraciones | `/funciones/api-e-integraciones/` | `/en/features/api-and-integrations/` | `FeaturePage.astro` |
+| Contacto | `/contacto/` | `/en/contact/` | `ContactPage.astro` |
+| Términos y privacidad | `/legal/*/` | `/en/legal/*/` | `LegalPage.astro` |
+| Blog | `/blog/` | `/en/blog/` | `BlogIndex.astro`, `BlogPost.astro` |
 
-## Variables de entorno
+Precios, comparativas de competidores y changelog se retiraron porque no corresponden al producto disponible.
 
-Todas opcionales: si faltan, se usa el default de `src/config.ts` / `astro.config.mjs`.
+## Configuración y publicación
 
 | Variable | Uso |
 |---|---|
-| `PUBLIC_SITE_URL` | Dominio de la landing (canonical, sitemap, OG) |
-| `PUBLIC_APP_URL` | URL del producto; los CTA van a `/register` y `/login` |
-| `PUBLIC_CONTACT_EMAIL` | Email mostrado en `/contacto` |
+| `PUBLIC_SITE_URL` | Dominio de la landing para canonical, sitemap, robots y Open Graph |
+| `PUBLIC_APP_URL` | Dominio de la webapp; CTA enlazan a `/sign-up` y `/sign-in` |
+| `PUBLIC_CONTACT_EMAIL` | Email mostrado en Contacto; opcional |
 
-`.env.local` lo genera el CLI de Vercel (`VERCEL_OIDC_TOKEN`); no lo usa el build.
+La URL final de la landing y de la aplicación todavía requieren confirmación. El default de Astro apunta al alias provisional `firma-tu-documento-landing.vercel.app`; configurar `PUBLIC_SITE_URL` antes de publicar. El default de la app está pendiente de verificar.
+
+Los textos legales son borradores informativos. Completar entidad responsable, contacto, tratamiento, plazos, proveedores y revisión jurídica antes de presentarlos como definitivos.
 
 ## Decisiones técnicas
 
-| Decisión | Por qué |
+| Decisión | Motivo |
 |---|---|
-| Astro estático (`build.format: 'directory'`, `trailingSlash: 'always'`) | Landing de contenido: HTML puro, sin servidor, URLs canónicas consistentes |
-| i18n con registro propio de rutas (`routes.ts`) en vez de duplicar páginas | Slugs traducidos por idioma (`/precios/` ↔ `/en/pricing/`) y hreflang automático |
-| Tailwind v4 configurado en CSS (`@theme`) | Tokens del design system junto a los estilos globales; sin archivo de config |
-| Un único `motion.ts` global (GSAP + Lenis) | Sitio multipágina sin islands interactivas; una sola inicialización por carga |
-| Lenis solo para rueda, touch nativo | Evita conflictos con el scroll del sistema en móvil |
-| Clase `js-motion` puesta en `<head>` + fallback de 4s | Ocultar estados iniciales sin flash, sin dejar la página en blanco si el JS falla |
-| `scripts/sync-icons.mjs` | Copia solo los íconos de lucide que se usan (evita procesar ~2000 SVG) |
-| pnpm | Gestor del repo (`packageManager: pnpm@12.4.2`) |
-| Playwright contra el build (`build && preview`), nunca el dev server | Probar lo mismo que se deploya |
+| Astro estático, formato directory y trailing slash | Marketing estático con URLs canónicas consistentes |
+| Registro i18n propio | Slugs y copy distintos por idioma con `hreflang` |
+| Tailwind 4 configurado desde CSS | Tokens visuales junto al sistema de estilos |
+| Un único `motion.ts` | Inicialización compartida de GSAP y Lenis |
+| Lenis solo para rueda | Mantiene scroll táctil nativo |
+| Sin precios en metadatos | El producto aún no implementa billing |
 
-## Pendientes conocidos
+## Pendientes confirmados
 
-- Sin dominio propio (default `https://flowboard-landing.vercel.app`).
-- Textos legales: documento base, falta revisión legal.
-- Deuda de UI registrada en los tests (`test.fail`): ver `docs/testing.md` → "Deuda conocida".
+- Confirmar el nombre comercial definitivo y los dominios públicos de landing y aplicación.
+- Configurar canal comercial si se desea publicar un email de contacto.
+- Revisar los textos legales con la entidad responsable y asesoría jurídica.
+- En una etapa posterior, adaptar la estructura visual para que deje de parecerse a la landing de origen.

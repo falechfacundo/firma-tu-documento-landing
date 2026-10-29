@@ -23,5 +23,5 @@ export const allPages: Page[] = [...staticPages, ...posts];
 
 /** Subconjunto representativo (una por tipo de vista) para capturas y Lighthouse. */
 export const keyPages: Page[] = [
-  'es:home', 'en:home', 'es:feat-board', 'es:pricing', 'es:cmp-jira', 'es:blog', 'es:contact', 'es:changelog',
+  'es:home', 'en:home', 'es:feat-signing', 'es:feat-approvals', 'es:feat-evidence', 'es:blog', 'es:contact', 'es:privacy',
 ].map((name) => allPages.find((p) => p.name === name)!).concat(posts[0]);

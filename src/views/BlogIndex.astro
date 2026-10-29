@@ -11,8 +11,8 @@ const { lang } = Astro.props;
 const t = ui[lang].common;
 const posts = await getPosts(lang);
 const copy = {
-  es: { title: 'Blog', desc: 'Guías y buenas prácticas sobre gestión de proyectos, metodologías ágiles, OKRs y productividad de equipos.', h1: 'Ideas para equipos que quieren fluir.', lead: 'Guías prácticas sobre gestión de proyectos, metodologías ágiles y objetivos.' },
-  en: { title: 'Blog', desc: 'Guides and best practices on project management, agile methodologies, OKRs and team productivity.', h1: 'Ideas for teams that want to flow.', lead: 'Practical guides on project management, agile methodologies and goals.' },
+  es: { title: 'Blog', desc: 'Guías prácticas sobre firma electrónica, gestión documental, aprobaciones y seguimiento de acuerdos.', h1: 'Firmar es una etapa. Gestionar el acuerdo, también.', lead: 'Ideas para preparar documentos, coordinar revisiones y dar seguimiento después de la firma.' },
+  en: { title: 'Blog', desc: 'Practical guides to electronic signatures, document management, approvals and agreement follow-up.', h1: 'Signing is one step. Managing the agreement is another.', lead: 'Ideas for preparing documents, coordinating reviews and following up after signing.' },
 }[lang];
 const fmt = new Intl.DateTimeFormat(lang === 'es' ? 'es-AR' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 const crumbs = [{ name: t.breadcrumbHome, href: url('home', lang) }, { name: copy.title, href: url('blog', lang) }];

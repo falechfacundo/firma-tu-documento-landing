@@ -6,8 +6,6 @@ import type { Lang } from '../i18n/routes';
 interface Props { lang?: Lang }
 const { lang = 'es' } = Astro.props;
 const c = home[lang].cta;
-const T = 'M240,185 V100 C240,42 290,0 350,0 H597 Q605,0 605,8 V105 C605,150 570,185 510,185 Z';
-const M = 'M240,185 H140 C55,185 0,250 0,340 V364 Q0,372 8,372 H105 C190,372 240,300 240,185 Z';
 ---
 <section id="empezar" class="section pb-32" data-cta>
   <div class="wrap-wide">
@@ -17,8 +15,10 @@ const M = 'M240,185 H140 C55,185 0,250 0,340 V364 Q0,372 8,372 H105 C190,372 240
         <div class="absolute left-1/2 top-[60%] h-[70%] w-[80%] -translate-x-1/2 rounded-full bg-accent/50 blur-[110px]"></div>
       </div>
 
-      <svg class="cta-mark relative mx-auto mb-10 h-16 w-auto text-white" viewBox="0 0 605 550" fill="currentColor" aria-hidden="true" style="overflow:visible">
-        <path data-cta-leaf="a" d={T} /><path data-cta-leaf="b" d={M} /><g transform="translate(0 365)"><path data-cta-leaf="c" d={T} /></g>
+      <svg class="cta-mark relative mx-auto mb-10 h-16 w-auto text-white" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="overflow:visible">
+        <path data-cta-leaf="a" d="M8 3.75h10l6 6v17.5H8a2 2 0 0 1-2-2v-19.5a2 2 0 0 1 2-2Z" />
+        <path data-cta-leaf="b" d="M18 4v6h6M10.5 15.25h10M10.5 19h5.25" />
+        <path data-cta-leaf="c" d="M10.5 23c2.7-2.5 3.6 1.7 5.2-.3 1.1-1.4 2.3-2.4 3.8-1.7 1 .5 1.5.2 2.1-.4" />
       </svg>
 
       <h2 class="h-display relative mx-auto max-w-[16ch] grad-text" style="font-size:clamp(2.6rem,7vw,5.4rem)" data-reveal>{c.h2}</h2>

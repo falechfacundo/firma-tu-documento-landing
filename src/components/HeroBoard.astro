@@ -15,7 +15,7 @@ const columns = c.cols.map((name, ci) => ({
   name, color: colColors[ci],
   cards: Object.entries(c.cards).filter(([, k]) => k.col === ci).map(([id, k]) => ({ id, ...k, tagName: c.tags[k.tag], tagC: tagColor(k.tag) })),
 }));
-const nav = ['layout-dashboard', 'square-check-big', 'square-kanban', 'target', 'chart-column', 'users'];
+const nav = ['layout-dashboard', 'folder-open', 'file-signature', 'files', 'briefcase-business', 'users'];
 ---<div class="hero-stage" data-hero-stage>
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="hero-tilt" data-hero-tilt>
@@ -41,7 +41,7 @@ const nav = ['layout-dashboard', 'square-check-big', 'square-kanban', 'target', 
           <main class="main">
             <div class="head">
               <div class="proj">
-                <span class="proj-ic"><Icon name="rocket" size={15} /></span>
+                <span class="proj-ic"><Icon name="file-text" size={15} /></span>
                 <div>
                   <div class="proj-name">{c.project}</div>
                   <div class="proj-sub">{c.sprintSub}</div>

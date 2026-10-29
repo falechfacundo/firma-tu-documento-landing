@@ -1,68 +1,66 @@
-# FlowBoard · Landing
+# Firma tu Documento · Landing
 
-Landing page de FlowBoard, construida con **Astro 7 + Tailwind v4 + GSAP (ScrollTrigger, Flip) + Lenis**.
-Es un repo independiente del producto (`kanban-nextjs`).
+Sitio de marketing estático en español e inglés para la plataforma de firma electrónica, gestión documental, aprobaciones y acuerdos.
 
-## Estado
+## Stack
 
-| | |
-| --- | --- |
-| Deploy | ❌ Sin dominio propio. Default de `PUBLIC_SITE_URL`: `https://flowboard-landing.vercel.app` |
-| Producto | Sin billing: la página de precios describe planes que el producto todavía no cobra |
+- Astro 7 con generación estática
+- Tailwind CSS 4
+- GSAP 3 (ScrollTrigger y Flip) + Lenis
+- pnpm 12 · Node 22 · TypeScript strict
+- Playwright y Lighthouse CI configurados en el proyecto
 
-## Comandos
+## Desarrollo
 
-| Comando | Acción |
-|---|---|
-| `pnpm install` | Instala dependencias |
-| `pnpm dev` | Dev server en `http://localhost:4321` |
-| `pnpm build` | Build estático a `dist/` |
-| `pnpm preview` | Sirve el build |
-| `pnpm check` | Type-check de Astro/TS |
-| `pnpm icons` | Copia a `src/icons` solo los íconos lucide usados |
-| `pnpm test:e2e` | Playwright contra el build en 6 dispositivos (ver `docs/testing.md`) |
-| `pnpm build && pnpm lighthouse` | Lighthouse CI mobile + desktop |
+```bash
+pnpm install
+pnpm dev
+pnpm build
+pnpm preview
+pnpm check
+```
 
-Documentación técnica en [`CLAUDE.md`](CLAUDE.md) y [`docs/`](docs/) (design system, animaciones, testing, contexto).
+La landing corre localmente en `http://localhost:4321`. `pnpm build` genera `dist/` y sincroniza los íconos usados.
 
 ## Configuración
 
-Variables (o defaults en `src/config.ts`):
+Variables opcionales, también configurables en el entorno de despliegue:
 
-| Variable | Uso |
-|---|---|
-| `PUBLIC_SITE_URL` | Dominio de esta landing (canonical, sitemap, OG). Default `https://flowboard-landing.vercel.app` |
-| `PUBLIC_APP_URL` | URL del producto; los CTA apuntan a `/register` y `/login` |
-| `PUBLIC_CONTACT_EMAIL` | Email mostrado en /contacto |
+| Variable | Uso | Valor por defecto |
+|---|---|---|
+| `PUBLIC_SITE_URL` | URL pública usada para canonical, sitemap y Open Graph | `https://firma-tu-documento-landing.vercel.app` (provisional) |
+| `PUBLIC_APP_URL` | URL de la webapp para registro e ingreso | `https://app.firmatu.com` (pendiente de confirmar) |
+| `PUBLIC_CONTACT_EMAIL` | Email comercial mostrado en Contacto | Sin valor; se muestra un enlace para crear cuenta |
+
+Los formularios de soporte no están configurados. No se muestran precios porque el producto no incluye billing.
+
+## Páginas
+
+- Inicio en español (`/`) e inglés (`/en/`)
+- Funciones en ES/EN: firma electrónica, documentos, aprobaciones, plantillas, trazabilidad, acuerdos y API
+- Contacto, términos y privacidad
+- Blog bilingüe con guías sobre firma electrónica y seguimiento de acuerdos
+
+Las rutas y traducciones se mantienen en `src/i18n/routes.ts`; los textos en `src/i18n/`. El blog usa Markdown en `src/content/blog/{es,en}`.
 
 ## Estructura
 
-```
+```text
 src/
-  i18n/         routes.ts (rutas ES/EN), home.ts, features.ts, pages.ts (precios, comparativas, legal, changelog), ui.ts
-  views/        Home, FeaturePage, PricingPage, ComparePage, LegalPage, ContactPage, ChangelogPage, BlogIndex, BlogPost
-  pages/        index, en/index, [...slug] (páginas del registro de rutas), blog/, en/blog/, 404, robots.txt
-  content/blog/ Artículos en Markdown (es/ y en/, unidos por translationKey)
-  components/   Nav, Footer, Hero, HeroBoard, Showcase, Bento, Flow, Details, CTA, InnerHero, Faq, CtaBand, JsonLd...
-  scripts/motion.ts   Animación (Lenis, GSAP, loop del tablero, reveals, pin)
-scripts/sync-icons.mjs  Copia a src/icons solo los íconos lucide usados (corre en dev/build)
+  pages/       páginas estáticas, blog, 404 y robots.txt
+  views/       Home, FeaturePage, LegalPage, ContactPage, BlogIndex y BlogPost
+  components/  navegación, secciones, vistas ilustrativas e íconos
+  i18n/        rutas, textos por página y metadatos
+  content/blog artículos Markdown en ES y EN
+  scripts/     GSAP y Lenis
+  styles/      tokens globales y estilos de prosa
+docs/          contexto del producto, sistema visual, animaciones y QA
 ```
 
-## SEO
+## SEO e idioma
 
-- Español en `/` e inglés en `/en/`, con `hreflang` + `x-default`, canonical y `og:locale`.
-- `sitemap-index.xml` (con alternates i18n) y `robots.txt` generados en build.
-- JSON-LD: Organization, WebSite, SoftwareApplication, Product (precios), FAQPage, BreadcrumbList, BlogPosting.
-- Una página por función, comparativas, precios, blog y changelog; 404 con `noindex`.
+Español en `/` e inglés bajo `/en/`, con canonical, `hreflang`, sitemap, `robots.txt`, Open Graph y JSON-LD. Configurá `PUBLIC_SITE_URL` con el dominio definitivo antes de publicar para evitar canonical provisionales.
 
-## Agregar contenido
+## Contenido legal
 
-- Nueva página estática: agregar la ruta en `src/i18n/routes.ts` y su contenido/vista.
-- Nuevo artículo: crear `src/content/blog/es/<slug>.md` y `en/<slug>.md` con el mismo `translationKey`.
-- Al usar un ícono nuevo de lucide, `pnpm icons` (dev/build ya lo hacen).
-
-## Notas
-
-- Respeta `prefers-reduced-motion`.
-- Los textos legales son un documento base: revisarlos con asesoría legal antes de publicar.
-- Deploy: cualquier host estático; en Vercel es zero-config (framework Astro).
+Los textos de términos y privacidad son borradores informativos y requieren datos del responsable y revisión legal antes de presentarse como documentos definitivos.

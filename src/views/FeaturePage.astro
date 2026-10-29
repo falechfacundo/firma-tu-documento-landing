@@ -18,12 +18,12 @@ const related = featureKeys.filter((k) => k !== fkey).slice(0, 3);
 const stepsTitle = lang === 'es' ? 'Cómo funciona' : 'How it works';
 const capsTitle = lang === 'es' ? 'Lo que podés hacer' : 'What you can do';
 const crumbs = [{ name: t.breadcrumbHome, href: url('home', lang) }, { name: n.product, href: url('home', lang) + '#funciones' }, { name: c.eyebrow, href: url(fkey, lang) }];
-const ld = [{ '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: `${SITE_NAME} — ${c.eyebrow}`, applicationCategory: 'BusinessApplication', operatingSystem: 'Web', description: c.metaDesc, url: APP_URL, offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } }];
+const ld = [{ '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: `${SITE_NAME} — ${c.eyebrow}`, applicationCategory: 'BusinessApplication', operatingSystem: 'Web', description: c.metaDesc, url: APP_URL }];
 ---
 <Layout title={c.metaTitle} description={c.metaDesc} lang={lang} routeKey={fkey} breadcrumbs={crumbs} jsonLd={ld}>
   <InnerHero eyebrow={c.eyebrow} title={c.h1} lead={c.lead} crumbs={crumbs} icon={featureNav[fkey].icon}>
     <a href={REGISTER_URL} data-magnetic class="btn btn-primary btn-lg">{t.startFree} <Icon name="arrow-right" class="arrow" /></a>
-    <a href={url('pricing', lang)} data-magnetic class="btn btn-ghost btn-lg">{n.pricing}</a>
+    <a href={`${url('home', lang)}#producto`} data-magnetic class="btn btn-ghost btn-lg">{lang === 'es' ? 'Ver el producto' : 'Explore the product'}</a>
   </InnerHero>
 
   <section class="section !pt-8">

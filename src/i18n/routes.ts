@@ -6,23 +6,17 @@ export const ogLocale: Record<Lang, string> = { es: 'es_AR', en: 'en_US' };
 // Cada clave tiene su ruta por idioma (sin barras inicial/final).
 export const routes = {
   home: { es: '', en: '' },
-  'feat-board': { es: 'funciones/tablero-kanban', en: 'features/kanban-board' },
-  'feat-sprints': { es: 'funciones/sprints', en: 'features/sprints' },
-  'feat-timeline': { es: 'funciones/timeline', en: 'features/timeline' },
-  'feat-okrs': { es: 'funciones/okrs', en: 'features/okrs' },
-  'feat-time': { es: 'funciones/time-tracking', en: 'features/time-tracking' },
-  'feat-git': { es: 'funciones/integracion-git', en: 'features/git-integration' },
-  'feat-ai': { es: 'funciones/tickets-con-ia', en: 'features/ai-tickets' },
-  pricing: { es: 'precios', en: 'pricing' },
-  'cmp-jira': { es: 'comparar/jira', en: 'compare/jira' },
-  'cmp-clickup': { es: 'comparar/clickup', en: 'compare/clickup' },
-  'cmp-linear': { es: 'comparar/linear', en: 'compare/linear' },
-  'cmp-trello': { es: 'comparar/trello', en: 'compare/trello' },
+  'feat-signing': { es: 'funciones/firma-electronica', en: 'features/electronic-signature' },
+  'feat-documents': { es: 'funciones/gestion-documental', en: 'features/document-management' },
+  'feat-approvals': { es: 'funciones/aprobaciones-y-flujos', en: 'features/approvals-and-workflows' },
+  'feat-templates': { es: 'funciones/plantillas-documentales', en: 'features/document-templates' },
+  'feat-evidence': { es: 'funciones/trazabilidad-y-cumplimiento', en: 'features/traceability-and-compliance' },
+  'feat-agreements': { es: 'funciones/gestion-de-acuerdos', en: 'features/agreement-management' },
+  'feat-api': { es: 'funciones/api-e-integraciones', en: 'features/api-and-integrations' },
   terms: { es: 'legal/terminos', en: 'legal/terms' },
   privacy: { es: 'legal/privacidad', en: 'legal/privacy' },
   contact: { es: 'contacto', en: 'contact' },
   blog: { es: 'blog', en: 'blog' },
-  changelog: { es: 'novedades', en: 'changelog' },
 } as const;
 
 export type RouteKey = keyof typeof routes;
@@ -34,9 +28,7 @@ export function url(key: RouteKey, lang: Lang): string {
 }
 export const blogUrl = (slug: string, lang: Lang) => `${url('blog', lang)}${slug}/`;
 
-export const featureKeys = ['feat-board', 'feat-sprints', 'feat-timeline', 'feat-okrs', 'feat-time', 'feat-git', 'feat-ai'] as const;
-export const compareKeys = ['cmp-jira', 'cmp-clickup', 'cmp-linear', 'cmp-trello'] as const;
+export const featureKeys = ['feat-signing', 'feat-documents', 'feat-approvals', 'feat-templates', 'feat-evidence', 'feat-agreements', 'feat-api'] as const;
 export type FeatureKey = (typeof featureKeys)[number];
-export type CompareKey = (typeof compareKeys)[number];
 
 export function otherLang(lang: Lang): Lang { return lang === 'es' ? 'en' : 'es'; }

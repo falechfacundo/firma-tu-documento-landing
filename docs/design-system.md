@@ -1,7 +1,7 @@
 # Design system
 
 Tailwind **v4** configurado desde CSS: tokens en `@theme` de `src/styles/global.css`. **No existe `tailwind.config.*`**.
-Tema único **oscuro** (`color-scheme: dark`, `theme-color #0b0b0e`); no hay modo claro.
+Tema único **oscuro** (`color-scheme: dark`, `theme-color #0a1424`); no hay modo claro. La identidad usa azul tinta y azul firma, con el lenguaje visual oscuro de la landing de origen.
 
 ## Breakpoints
 
@@ -12,7 +12,7 @@ Los de Tailwind por defecto (no se sobrescriben en `@theme`). Prefijos `xl:` y `
 | (custom) `max-[359px]` | ≤ 359px | CTA del nav oculto (pasa al menú móvil) — `Nav.astro` |
 | `max-sm` | < 640px | Nav más compacto (gutter 12px, padding del CTA) — `Nav.astro` |
 | `sm` | 640px | Nav muestra idioma e "Ingresar"; CTAs del hero/CTA en fila; más padding superior en heros |
-| `md` | 768px | Bento a 6 columnas, footer a 5 columnas, grillas de vistas internas |
+| `md` | 768px | Bento a 6 columnas, footer a 4 columnas, grillas de vistas internas |
 | `lg` | 1024px | Nav desktop con dropdowns (debajo: menú móvil); Showcase en 2 columnas con **pin**; Details en 2 columnas con sticky; hojas del hero con parallax |
 
 Media queries propias en componentes:
@@ -29,25 +29,25 @@ Media queries propias en componentes:
 
 | Token | Valor | Uso |
 |---|---|---|
-| `--color-ink` | `#08080a` | Texto sobre fondos claros (check de lista) |
-| `--color-base` | `#0b0b0e` | Fondo de página |
-| `--color-surface` | `#111114` | Superficies (marquee) |
-| `--color-card` | `#16161a` | Cards, nodos del Flow |
-| `--color-raise` | `#1c1c22` | Elementos elevados (íconos del Showcase) |
+| `--color-ink` | `#07111f` | Fondo de alto contraste |
+| `--color-base` | `#0a1424` | Fondo de página |
+| `--color-surface` | `#101d30` | Superficies (marquee) |
+| `--color-card` | `#142238` | Cards, nodos del Flow |
+| `--color-raise` | `#1b2b43` | Elementos elevados (íconos del Showcase) |
 | `--color-line` | `rgba(255,255,255,.075)` | Bordes y divisores |
 | `--color-line-strong` | `rgba(255,255,255,.14)` | Bordes de botones ghost, paneles |
 | `--color-fg` | `#f4f3f8` | Texto principal |
 | `--color-fg-2` | `#a3a2b3` | Texto secundario, `.lead` |
 | `--color-fg-3` | `#858496` | Texto terciario, metadatos. Valor mínimo que pasa 4.5:1 (AA) sobre todos los fondos (`base` 5.37:1, `raise` 4.63:1): no oscurecerlo |
-| `--color-accent` | `#6e5cf5` | Acento principal (CTA, foco) |
-| `--color-accent-2` | `#9b8bff` | Eyebrows, íconos, gradientes |
-| `--color-accent-3` | `#c4baff` | Íconos sobre fondo de acento, links de prosa |
+| `--color-accent` | `#2563eb` | Azul firma (CTA, foco) |
+| `--color-accent-2` | `#60a5fa` | Eyebrows, íconos, gradientes |
+| `--color-accent-3` | `#bfdbfe` | Íconos sobre fondo de acento, links de prosa |
 | `--color-ok` | `#34d399` | Estado OK / done |
 | `--color-warn` | `#fbbf24` | Prioridad / review |
 | `--color-info` | `#38bdf8` | En progreso |
 | `--color-danger` | `#f87171` | Marcador "hoy", prioridad alta |
 
-Gradientes de texto: `.grad-text` (blanco → 55% alfa, vertical) y `.grad-accent` (`#c4baff → #8b7bff → #6e5cf5`).
+Gradientes de texto: `.grad-text` (blanco → 55% alfa, vertical) y `.grad-accent` (`#bfdbfe → #60a5fa → #2563eb`).
 
 ## Tipografía
 
@@ -64,7 +64,7 @@ Gradientes de texto: `.grad-text` (blanco → 55% alfa, vertical) y `.grad-accen
 | h2 de FAQ | `clamp(1.8rem, 3.6vw, 2.8rem)` | inline |
 | h3 de Bento | `clamp(1.2rem, 1.7vw, 1.5rem)` | 600, `-0.03em` |
 | `.lead` | `clamp(1.05rem, 1.5vw, 1.25rem)` | `line-height 1.6`, `fg-2`, `text-wrap: pretty` |
-| `.prose-fb` (blog, legal) | `1.05rem` | `line-height 1.8` (`src/styles/prose.css`) |
+| `.prose-firma` (blog, legal) | `1.05rem` | `line-height 1.8` (`src/styles/prose.css`) |
 | `.eyebrow` | `.72rem` mono | uppercase, `letter-spacing .14em`, `accent-2`, línea degradada antes |
 
 ## Espaciado y layout
@@ -94,10 +94,10 @@ No hay escala de spacing propia: se usa la de Tailwind.
 
 ## Sombras y superficies
 
-- `.btn-primary`: gradiente `#8371ff → #6e5cf5 → #5b48e6` + inset highlight + glow `0 10px 30px -8px rgba(110,92,245,.7)`; brillo que barre en hover.
+- `.btn-primary`: gradiente `#3b82f6 → #2563eb → #1d4ed8` + inset highlight + glow azul; brillo que barre en hover.
 - `.btn-ghost`: `rgba(255,255,255,.04)` + borde inset `line-strong` + `backdrop-filter: blur(10px)`.
 - `.glass`: gradiente blanco 5.5% → 2% + borde inset + `blur(18px)`.
-- `.cta`: radial violeta oscuro + borde inset violeta + `0 60px 140px -40px rgba(110,92,245,.45)`.
+- `.cta`: radial azul tinta + borde inset azul + glow azul suave.
 - Texturas: `.hairline-grid` (grilla de 64px), `.noise` (ruido SVG en overlay), blobs con `blur(110-130px)`.
 - Easings: `--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1)`, `--ease-soft: cubic-bezier(0.22, 1, 0.36, 1)`.
 
@@ -105,8 +105,8 @@ No hay escala de spacing propia: se usa la de Tailwind.
 
 Premium, oscuro y minimalista: el producto se muestra "vivo" en mocks animados (board del hero, Showcase, Bento).
 
-1. **Oscuro con un solo acento**: neutros fríos y violeta `#6e5cf5`; el color de estado (ok/warn/info/danger) solo dentro de mocks del producto.
-2. **Profundidad sutil**: bordes de 1px con alfa, glows violetas y blur, nunca sombras duras ni bordes opacos.
+1. **Oscuro con un acento**: azul tinta y azul firma `#2563eb`; estados de proceso en mocks.
+2. **Profundidad sutil**: bordes de 1px con alfa, glows azules y blur, nunca sombras duras ni bordes opacos.
 3. **Tipografía protagonista**: titulares grandes, tracking negativo, gradiente de texto; texto secundario en `fg-2`.
 4. **Movimiento con intención**: entradas `expo.out`, reveals al scrollear, demos que se mueven solas; siempre con alternativa para reduced motion.
 5. **Mobile-first sin perder densidad**: los mocks se escalan (no se reemplazan) y los efectos de puntero se apagan en touch.

@@ -1,70 +1,61 @@
-# FlowBoard · Landing
+# Firma tu Documento · Landing
 
-Landing de marketing estática (ES/EN) del producto FlowBoard. El producto vive en otro repo (`kanban-nextjs`).
+Landing estática bilingüe (ES/EN) para firma electrónica y gestión documental. La aplicación web está en el repositorio hermano `firma-tu-documento-webapp`.
 
 ## Stack
 
-- **Astro 7.3** (estático, `build.format: 'directory'`, `trailingSlash: 'always'`, i18n ES default sin prefijo / EN en `/en/`)
-- **Tailwind 4.3** configurado en CSS (`@theme` en `src/styles/global.css`, sin `tailwind.config`)
-- **GSAP 3.15** (ScrollTrigger, Flip) + **Lenis 1.3** en un único script: `src/scripts/motion.ts`
-- **pnpm 12** · Node 22 · TypeScript strict
-- Tests: **Playwright 1.64** + **Lighthouse CI**
+- Astro 7.3 · build estático, `build.format: 'directory'`, `trailingSlash: 'always'`
+- Tailwind CSS 4.3 en `src/styles/global.css`
+- GSAP 3.15 (ScrollTrigger, Flip) + Lenis 1.3 en `src/scripts/motion.ts`
+- pnpm 12 · Node 22 · TypeScript strict
+- Playwright 1.64 y Lighthouse CI
 
 ## Comandos
 
 ```bash
-pnpm dev                  # http://localhost:4321 (solo para desarrollar)
-pnpm build                # dist/ (corre sync-icons antes)
-pnpm preview              # sirve dist/ en :4321
-pnpm check                # astro check (tipos, incluye tests/)
-pnpm test:e2e             # Playwright sin visual, 6 dispositivos (hace build + preview solo)
-pnpm test:mobile          # solo iPhone SE, iPhone 14, Pixel 7
-pnpm test:visual          # capturas (solo local); test:visual:update para regenerar
-pnpm build && pnpm lighthouse   # Lighthouse CI mobile + desktop → .lighthouseci/
+pnpm dev
+pnpm build
+pnpm preview
+pnpm check
+pnpm test:e2e
+pnpm test:mobile
 ```
 
 ## Estructura
 
-```
-src/
-  pages/        index, en/index, [...slug] (genera las páginas de routes.ts), blog/, en/blog/, 404, robots.txt
-  views/        una vista por tipo de página (Home, FeaturePage, PricingPage, ComparePage, LegalPage, ...)
-  components/   Nav, Footer, Hero, HeroBoard, Showcase, Bento, Flow, Details, CTA, InnerHero, Faq, CtaBand, Icon...
-  i18n/         routes.ts (registro de rutas ES/EN) + textos por página (home, features, pages, ui, blog)
-  content/blog/ posts Markdown en es/ y en/, unidos por translationKey
-  scripts/motion.ts   toda la animación
-  styles/       global.css (tokens + utilidades), prose.css (blog/legal)
-tests/          specs de Playwright + helpers/
-docs/           design-system, animations, testing, project-context
+```text
+src/pages/       home, rutas estáticas, blog, 404 y robots.txt
+src/views/       Home, FeaturePage, LegalPage, ContactPage, BlogIndex, BlogPost
+src/components/  navegación, secciones de producto, íconos y footer
+src/i18n/        rutas, copy ES/EN
+src/content/blog artículos Markdown en español e inglés
+src/scripts/     GSAP y Lenis
+src/styles/      tokens y estilos de prosa
+docs/            contexto, diseño, animaciones y verificación
 ```
 
 ## Convenciones
 
-- Textos: nunca hardcodeados en componentes; van en `src/i18n/*` con versión `es` y `en`.
-- Páginas nuevas: agregar la clave en `src/i18n/routes.ts` (slug por idioma) + vista; los tests las toman solas.
-- Íconos: `<Icon name="..." />` con nombres de lucide; `scripts/sync-icons.mjs` copia solo los usados.
-- Estilos: utilidades de Tailwind en el markup; CSS propio en `<style is:global>` del componente, con clases cortas y tokens (`var(--color-*)`).
-- Animación: enganchar por `data-*` (`data-reveal`, `data-hero-in`, `data-magnetic`...), estado inicial en CSS bajo `.js-motion`.
-- Comentarios breves y solo para explicar el porqué. El código mezcla español e inglés; los nuevos, en español.
-- Commits: conventional commits en español (`fix(nav): ...`), atómicos.
+- El copy va en `src/i18n/`, siempre con versiones ES y EN; artículos en Markdown con `translationKey` compartida.
+- Una página nueva se registra en `src/i18n/routes.ts`; las rutas estáticas se generan desde ese registro.
+- Íconos mediante `<Icon name="..." />`; `scripts/sync-icons.mjs` mantiene solo los SVG usados.
+- Preferir Tailwind para layout; CSS propio en `<style is:global>` con tokens de `global.css`.
+- Animaciones por atributos `data-*`; limpiar listeners y contextos GSAP.
+- Commits convencionales y atómicos, con asunto en español.
 
-## Reglas no negociables
+## Reglas de interfaz
 
-1. **Mobile-first**: verificar 320px (iPhone SE). Nada puede salirse del viewport: `body` tiene `overflow-x: clip` y lo oculta en vez de mostrarlo.
-2. **Nada de `100vh`**: `svh`/`dvh` en CSS, `innerHeight` en JS.
-3. **`gsap.matchMedia()`** para todo comportamiento distinto entre móvil y desktop; devolver la limpieza.
-4. **Reduced motion**: toda animación nueva necesita estado final estático (bloque `if (reduced)` en `motion.ts`).
-5. **Animar solo transform/opacity** en lo que depende del scroll.
-6. **`:hover` propios dentro de `@media (hover: hover)`**; efectos de puntero solo con `finePointer`.
-7. **Scroll interno** con `data-lenis-prevent` + `overscroll-behavior: contain`.
-8. **Targets táctiles ≥ 44×44** en móvil: agrandar con `@media (pointer: coarse)` o padding + margen negativo, sin cambiar el layout con mouse.
-9. Tests contra el build (`preview`), nunca contra el dev server. `pnpm test:e2e` en verde antes de un PR.
-10. Sin secretos en el repo ni en docs (`.env*` está ignorado).
-11. **Contraste AA (4.5:1)** en todo texto, incluidos los mocks del producto; texto terciario con `fg-3`, nunca más oscuro.
+1. Mobile-first y sin desbordes a 320 px. El body usa `overflow-x: clip`.
+2. Usar `svh`/`dvh`, no `100vh`.
+3. Diferencias responsive de animación con `gsap.matchMedia()` y limpieza.
+4. Respetar `prefers-reduced-motion` con una vista estática legible.
+5. Animar solo `transform` y `opacity` en transiciones atadas al scroll.
+6. Limitar `:hover` a `@media (hover: hover)`.
+7. Scroll interno con `data-lenis-prevent` y `overscroll-behavior: contain`.
+8. Targets táctiles de al menos 44×44 px.
+9. Mantener contraste AA en el texto.
+10. No agregar planes, precios ni promesas legales que no estén respaldados por la webapp y sus documentos.
 
-## Docs
+## Configuración
 
-- [docs/design-system.md](docs/design-system.md): breakpoints, tokens, tipografía, patrones de componentes
-- [docs/animations.md](docs/animations.md): inicialización de GSAP/Lenis, convenciones, animaciones por sección
-- [docs/testing.md](docs/testing.md): suites, snapshots, Lighthouse, deuda conocida, checklist en dispositivo real
-- [docs/project-context.md](docs/project-context.md): producto, páginas, integraciones, env vars, decisiones técnicas
+`PUBLIC_SITE_URL` define canonical, sitemap y Open Graph. `PUBLIC_APP_URL` define los enlaces a `/sign-up` y `/sign-in`. `PUBLIC_CONTACT_EMAIL` es opcional; si no está definido, Contacto enlaza al registro.

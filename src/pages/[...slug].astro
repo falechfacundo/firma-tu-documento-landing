@@ -1,11 +1,8 @@
 ---
-import { routes, locales, featureKeys, compareKeys, type RouteKey, type Lang, type FeatureKey, type CompareKey } from '../i18n/routes';
+import { routes, locales, featureKeys, type RouteKey, type Lang, type FeatureKey } from '../i18n/routes';
 import FeaturePage from '../views/FeaturePage.astro';
-import PricingPage from '../views/PricingPage.astro';
-import ComparePage from '../views/ComparePage.astro';
 import LegalPage from '../views/LegalPage.astro';
 import ContactPage from '../views/ContactPage.astro';
-import ChangelogPage from '../views/ChangelogPage.astro';
 
 export function getStaticPaths() {
   const skip = new Set(['home', 'blog']);
@@ -22,9 +19,6 @@ export function getStaticPaths() {
 const { key, lang } = Astro.props;
 ---
 {(featureKeys as readonly string[]).includes(key) && <FeaturePage lang={lang} fkey={key as FeatureKey} />}
-{(compareKeys as readonly string[]).includes(key) && <ComparePage lang={lang} ckey={key as CompareKey} />}
-{key === 'pricing' && <PricingPage lang={lang} />}
 {key === 'terms' && <LegalPage lang={lang} kind="terms" />}
 {key === 'privacy' && <LegalPage lang={lang} kind="privacy" />}
 {key === 'contact' && <ContactPage lang={lang} />}
-{key === 'changelog' && <ChangelogPage lang={lang} />}

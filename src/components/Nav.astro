@@ -2,8 +2,8 @@
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
 import { REGISTER_URL, LOGIN_URL } from '../config';
-import { url, featureKeys, compareKeys, type Lang } from '../i18n/routes';
-import { ui, featureNav, competitors } from '../i18n/ui';
+import { url, featureKeys, type Lang } from '../i18n/routes';
+import { ui, featureNav } from '../i18n/ui';
 
 interface Props { lang: Lang; switchHref: string }
 const { lang, switchHref } = Astro.props;
@@ -32,19 +32,8 @@ const homeHref = url('home', lang);
             </ul>
           </div>
         </li>
-        <li><a class="nl" href={url('pricing', lang)}>{t.pricing}</a></li>
-        <li class="dd">
-          <button type="button" class="nl" aria-haspopup="true">{t.compare}<Icon name="chevron-down" size={14} class="chev" /></button>
-          <div class="dd-panel">
-            <ul>
-              {compareKeys.map((k) => (
-                <li><a href={url(k, lang)} class="dd-item dd-simple"><span><b>Firmatú Documento vs {competitors[k.replace('cmp-', '') as keyof typeof competitors]}</b></span></a></li>
-              ))}
-            </ul>
-          </div>
-        </li>
         <li><a class="nl" href={url('blog', lang)}>{t.blog}</a></li>
-        <li><a class="nl" href={url('changelog', lang)}>{t.changelog}</a></li>
+        <li><a class="nl" href={url('contact', lang)}>{ui[lang].footer.contact}</a></li>
       </ul>
 
       <div class="flex shrink-0 items-center gap-1">
@@ -67,16 +56,9 @@ const homeHref = url('home', lang);
           <li><a href={url(k, lang)}><Icon name={featureNav[k].icon} size={18} />{featureNav[k][lang][0]}</a></li>
         ))}
       </ul>
-      <p class="mm-h">{t.compare}</p>
-      <ul class="mm-list">
-        {compareKeys.map((k) => (
-          <li><a href={url(k, lang)}><Icon name="arrow-right" size={16} />Firmatú Documento vs {competitors[k.replace('cmp-', '') as keyof typeof competitors]}</a></li>
-        ))}
-      </ul>
       <ul class="mm-list mm-main">
-        <li><a href={url('pricing', lang)}>{t.pricing}</a></li>
         <li><a href={url('blog', lang)}>{t.blog}</a></li>
-        <li><a href={url('changelog', lang)}>{t.changelog}</a></li>
+        <li><a href={url('contact', lang)}>{ui[lang].footer.contact}</a></li>
         <li><a href={switchHref} hreflang={lang === 'es' ? 'en' : 'es'}>{ui[lang].footer.lang}</a></li>
         <li><a href={LOGIN_URL}>{t.login}</a></li>
       </ul>
