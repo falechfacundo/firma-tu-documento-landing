@@ -1,40 +1,312 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import Marquee from '../components/Marquee.astro';
-import Showcase from '../components/Showcase.astro';
-import Bento from '../components/Bento.astro';
-import Flow from '../components/Flow.astro';
-import Details from '../components/Details.astro';
-import CTA from '../components/CTA.astro';
-import type { Lang } from '../i18n/routes';
-import { APP_URL, SITE_NAME } from '../config';
+import Icon from '../components/Icon.astro';
+import Logo from '../components/Logo.astro';
+import { home } from '../i18n/home';
+import { featureNav } from '../i18n/ui';
+import { url, type Lang } from '../i18n/routes';
+import { APP_URL, REGISTER_URL, LOGIN_URL, SITE_NAME } from '../config';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
-const meta = {
-  es: {
-    title: 'Firma tu Documento — Firma electrónica y gestión de acuerdos',
-    description: 'Prepará documentos, reuní firmas electrónicas, gestioná aprobaciones y seguí acuerdos con sus evidencias en un solo espacio.',
-    desc: 'Plataforma web para firma electrónica, flujos de aprobación, gestión documental y seguimiento de acuerdos.',
-  },
-  en: {
-    title: 'Firma tu Documento — Electronic signatures and agreement management',
-    description: 'Prepare documents, collect electronic signatures, manage approvals and follow agreements with their evidence in one workspace.',
-    desc: 'Web platform for electronic signatures, approval workflows, document management and agreement follow-up.',
-  },
-}[lang];
+const c = home[lang];
+const meta = lang === 'es'
+  ? { title: `${SITE_NAME} — Firma electrónica y gestión de acuerdos`, description: 'Prepará documentos, coordiná aprobaciones y reuní firmas electrónicas. Después, seguí las obligaciones y fechas de cada acuerdo.', application: 'Plataforma web para firma electrónica, gestión documental, aprobaciones y seguimiento de acuerdos.' }
+  : { title: `${SITE_NAME} — Electronic signatures and agreement management`, description: 'Prepare documents, coordinate approvals and collect electronic signatures. Then follow each agreement’s obligations and due dates.', application: 'Web platform for electronic signatures, document management, approvals and agreement follow-up.' };
 const ld = [
-  { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: SITE_NAME, applicationCategory: 'BusinessApplication', operatingSystem: 'Web', description: meta.desc, url: APP_URL },
+  { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: SITE_NAME, applicationCategory: 'BusinessApplication', operatingSystem: 'Web', description: meta.application, url: APP_URL },
   { '@context': 'https://schema.org', '@type': 'WebSite', name: SITE_NAME, url: new URL(lang === 'es' ? '/' : '/en/', Astro.site).href, inLanguage: lang },
 ];
 ---
 <Layout title={meta.title} description={meta.description} lang={lang} routeKey="home" jsonLd={ld}>
-  <Hero lang={lang} />
-  <Marquee lang={lang} />
-  <Showcase lang={lang} />
-  <Bento lang={lang} />
-  <Flow lang={lang} />
-  <Details lang={lang} />
-  <CTA lang={lang} />
+  <section id="top" class="home-hero">
+    <div class="wrap home-hero-grid">
+      <div class="home-intro">
+        <a href={url('feat-signing', lang)} class="home-kicker" data-hero-in>
+          <span class="home-kicker-dot"></span>{c.hero.eyebrow}<Icon name="arrow-right" size={15} />
+        </a>
+        <h1 class="home-title" data-hero-in>{c.hero.title}</h1>
+        <p class="home-lead" data-hero-in>{c.hero.lead}</p>
+        <div class="home-actions" data-hero-in>
+          <a href={REGISTER_URL} class="btn btn-primary btn-lg">{c.hero.primary}<Icon name="arrow-right" class="arrow" /></a>
+          <a href="#producto" class="home-text-link">{c.hero.secondary}<Icon name="arrow-down" size={16} /></a>
+        </div>
+        <p class="home-note" data-hero-in>{lang === 'es' ? 'Firma · aprobación · seguimiento' : 'Sign · approve · follow up'}</p>
+      </div>
+
+      <div class="hero-product" data-reveal aria-label={c.hero.demoLabel}>
+        <div class="product-topbar">
+          <div class="product-brand"><Logo size={17} /></div>
+          <span class="product-path">{c.demo.workspace}</span>
+          <span class="product-more" aria-hidden="true">···</span>
+        </div>
+        <div class="product-body">
+          <div class="document-panel">
+            <div class="document-meta">
+              <span class="document-file"><Icon name="file-text" size={14} />{c.demo.type}</span>
+              <span class="document-code">{c.demo.code}</span>
+            </div>
+            <div class="paper">
+              <span class="paper-kicker">{lang === 'es' ? 'ACUERDO DE SERVICIOS' : 'SERVICES AGREEMENT'}</span>
+              <h2>{c.demo.documentTitle}</h2>
+              <p>{c.demo.paragraph}</p>
+              <div class="paper-lines" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="paper-signature"><span class="signature-mark">{lang === 'es' ? 'Diego Acosta' : 'Diego Acosta'}</span><span>{c.demo.signature}</span></div>
+            </div>
+            <div class="signer-row">
+              <span class="signer-avatar">LM</span><span>Lucía Méndez</span><Icon name="circle-check" size={16} class="signer-check" />
+              <span class="signer-avatar signer-avatar-alt">DA</span><span>Diego Acosta</span><Icon name="circle-check" size={16} class="signer-check" />
+            </div>
+          </div>
+          <aside class="activity-panel">
+            <div class="activity-heading"><span>{c.demo.activityTitle}</span><span class="status-pill"><i></i>{c.demo.status}</span></div>
+            <ol class="activity-list">
+              {c.demo.events.map(([time, action, person]) => (
+                <li><time>{time}</time><span class="activity-node"><i></i></span><div><b>{action}</b><small>{person}</small></div></li>
+              ))}
+            </ol>
+            <div class="activity-foot"><Icon name="shield-check" size={15} /><span>{lang === 'es' ? 'Certificado disponible' : 'Certificate available'}</span></div>
+          </aside>
+        </div>
+        <div class="product-caption"><span class="caption-dot"></span>{c.hero.demoLabel}</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="promise-strip" aria-label={lang === 'es' ? 'Principios del producto' : 'Product principles'}>
+    <div class="wrap promise-grid">
+      {c.promise.items.map(([title, text], i) => (
+        <article class="promise-item" data-reveal>
+          <span class="promise-index">0{i + 1}</span><div><h2>{title}</h2><p>{text}</p></div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section process-section">
+    <div class="wrap">
+      <div class="section-heading">
+        <p class="eyebrow" data-reveal>{c.process.eyebrow}</p>
+        <h2 class="h-section" data-reveal>{c.process.title}</h2>
+        <p class="lead" data-reveal>{c.process.lead}</p>
+      </div>
+      <ol class="process-grid">
+        {c.process.steps.map(([icon, title, text], i) => (
+          <li class="process-card" data-reveal>
+            <div class="process-card-top"><span class="process-icon"><Icon name={icon} size={20} /></span><span class="process-num">0{i + 1}</span></div>
+            <h3>{title}</h3><p>{text}</p>
+            {i < c.process.steps.length - 1 && <Icon name="arrow-right" size={17} class="process-arrow" />}
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section id="producto" class="section capability-section">
+    <div class="wrap">
+      <div class="capability-head">
+        <div><p class="eyebrow" data-reveal>{c.capabilities.eyebrow}</p><h2 class="h-section" data-reveal>{c.capabilities.title}</h2></div>
+        <p class="lead" data-reveal>{c.capabilities.lead}</p>
+      </div>
+      <div class="capability-grid">
+        {c.capabilities.items.map(([key, title, text], i) => (
+          <a href={url(key, lang)} class="capability-card" data-reveal>
+            <span class="capability-index">0{i + 1}</span>
+            <span class="capability-icon"><Icon name={featureNav[key].icon} size={21} /></span>
+            <span class="capability-copy"><b>{title}</b><small>{text}</small></span>
+            <Icon name="arrow-up-right" size={18} class="capability-arrow" />
+          </a>
+        ))}
+      </div>
+      <div class="capability-all" data-reveal>
+        <span>{lang === 'es' ? 'También disponible' : 'Also available'}</span>
+        <a href={url('feat-documents', lang)}>{featureNav['feat-documents'][lang][0]}<Icon name="arrow-right" size={14} /></a>
+        <a href={url('feat-templates', lang)}>{featureNav['feat-templates'][lang][0]}<Icon name="arrow-right" size={14} /></a>
+        <a href={url('feat-api', lang)}>{featureNav['feat-api'][lang][0]}<Icon name="arrow-right" size={14} /></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section lifecycle-section">
+    <div class="wrap lifecycle-grid">
+      <div class="lifecycle-copy">
+        <p class="eyebrow" data-reveal>{c.lifecycle.eyebrow}</p>
+        <h2 class="h-section" data-reveal>{c.lifecycle.title}</h2>
+        <p class="lead" data-reveal>{c.lifecycle.lead}</p>
+        <a href={url('feat-agreements', lang)} class="home-text-link" data-reveal>{lang === 'es' ? 'Ver gestión de acuerdos' : 'Explore agreement management'}<Icon name="arrow-right" size={16} /></a>
+      </div>
+      <div class="obligation-card" data-reveal>
+        <div class="obligation-head"><span>{lang === 'es' ? 'Acuerdo · Servicios Delta' : 'Agreement · Delta Services'}</span><Icon name="ellipsis" size={18} /></div>
+        <ol>
+          {c.lifecycle.obligations.map(([num, title, detail], i) => (
+            <li class={i === 2 ? 'obligation-row obligation-last' : 'obligation-row'}>
+              <span class="obligation-num">{num}</span><div><b>{title}</b><small>{detail}</small></div>
+              <Icon name={i === 0 ? 'circle-check' : i === 1 ? 'calendar-clock' : 'file-text'} size={17} />
+            </li>
+          ))}
+        </ol>
+        <p class="obligation-note"><Icon name="info" size={13} />{c.lifecycle.note}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section closing-section">
+    <div class="wrap">
+      <div class="closing-card" data-reveal>
+        <div class="closing-mark"><Logo size={28} word={false} /></div>
+        <p class="eyebrow">{lang === 'es' ? 'Firma tu Documento' : 'Firma tu Documento'}</p>
+        <h2>{c.cta.title}</h2>
+        <p>{c.cta.lead}</p>
+        <div class="home-actions home-actions-center">
+          <a href={REGISTER_URL} class="btn btn-primary btn-lg">{c.cta.primary}<Icon name="arrow-right" class="arrow" /></a>
+          <a href={LOGIN_URL} class="btn btn-ghost btn-lg">{c.cta.secondary}</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>
+
+<style is:global>
+  .home-hero { position: relative; overflow: hidden; padding: clamp(7.5rem, 12vw, 10rem) 0 clamp(4.5rem, 8vw, 7rem); }
+  .home-hero::before { content: ''; position: absolute; inset: 0 0 auto; height: 42rem; pointer-events: none; opacity: .4; background: radial-gradient(ellipse at 78% 22%, rgba(37,99,235,.22), transparent 54%); }
+  .home-hero-grid { position: relative; display: grid; align-items: center; gap: clamp(3rem, 7vw, 6.5rem); }
+  .home-intro { max-width: 39rem; }
+  .home-kicker { display: inline-flex; align-items: center; gap: .65rem; color: var(--color-accent-2); font: 500 .76rem/1.3 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; }
+  .home-kicker svg { transition: transform .3s; }
+  @media (hover:hover) { .home-kicker:hover svg { transform: translateX(4px); } }
+  .home-kicker-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--color-accent-2); box-shadow: 0 0 16px rgba(96,165,250,.8); }
+  .home-title { margin-top: 1.45rem; font-size: clamp(3rem, 6.2vw, 5.4rem); font-weight: 570; line-height: .99; letter-spacing: -.055em; text-wrap: balance; }
+  .home-lead { margin-top: 1.6rem; max-width: 35rem; color: var(--color-fg-2); font-size: clamp(1.05rem, 1.4vw, 1.2rem); line-height: 1.7; text-wrap: pretty; }
+  .home-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.4rem; margin-top: 2rem; }
+  .home-text-link { display: inline-flex; align-items: center; gap: .5rem; color: var(--color-fg); font-size: .94rem; font-weight: 550; transition: color .2s, gap .2s; }
+  @media (hover:hover) { .home-text-link:hover { color: var(--color-accent-2); gap: .75rem; } }
+  .home-note { margin-top: 1.4rem; color: var(--color-fg-3); font: .68rem/1.5 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; }
+  .hero-product { overflow: hidden; border: 1px solid rgba(191,219,254,.16); border-radius: 1.25rem; background: rgba(16,29,48,.88); box-shadow: 0 35px 100px -50px rgba(37,99,235,.45), 0 1px 0 rgba(255,255,255,.06) inset; }
+  .product-topbar { display: flex; align-items: center; gap: .8rem; padding: .95rem 1.1rem; border-bottom: 1px solid var(--color-line); }
+  .product-brand { color: var(--color-fg); }
+  .product-path { overflow: hidden; margin-left: auto; color: var(--color-fg-3); font: .67rem var(--font-mono); text-overflow: ellipsis; white-space: nowrap; }
+  .product-more { color: var(--color-fg-3); font-size: 1.2rem; letter-spacing: .08em; }
+  .product-body { display: grid; gap: 0; }
+  .document-panel { min-width: 0; padding: 1.1rem; }
+  .document-meta { display: flex; justify-content: space-between; align-items: center; color: var(--color-fg-3); font: .67rem var(--font-mono); }
+  .document-file { display: flex; align-items: center; gap: .4rem; }
+  .document-code { padding: .3rem .55rem; border-radius: 99px; background: rgba(255,255,255,.05); }
+  .paper { min-height: 19rem; margin-top: .8rem; padding: clamp(1.15rem, 2.8vw, 2rem); border-radius: .55rem; background: #f8fafc; color: #172235; box-shadow: 0 12px 35px rgba(0,0,0,.16); }
+  .paper-kicker { color: #526176; font: 600 .58rem var(--font-mono); letter-spacing: .16em; }
+  .paper h2 { max-width: 18rem; margin-top: 1.5rem; font: 600 clamp(1.1rem, 1.8vw, 1.4rem)/1.2 var(--font-sans); letter-spacing: -.035em; }
+  .paper p { max-width: 29rem; margin-top: .9rem; color: #546277; font-size: .73rem; line-height: 1.65; }
+  .paper-lines { display: grid; gap: .43rem; margin-top: 1rem; }
+  .paper-lines i { height: 3px; border-radius: 9px; background: #e1e7ef; }
+  .paper-lines i:nth-child(2) { width: 84%; } .paper-lines i:nth-child(3) { width: 61%; }
+  .paper-signature { display: grid; gap: .2rem; width: max-content; margin-top: 1.15rem; padding-top: .55rem; border-top: 1px solid #cbd5e1; }
+  .signature-mark { color: #1d4ed8; font: italic 1.05rem Georgia,serif; }
+  .paper-signature span:last-child { color: #64748b; font-size: .58rem; }
+  .signer-row { display: flex; align-items: center; flex-wrap: wrap; gap: .4rem; margin-top: .85rem; color: var(--color-fg-2); font-size: .68rem; }
+  .signer-avatar { display: grid; place-items: center; width: 1.45rem; height: 1.45rem; margin-left: .25rem; border-radius: 50%; background: #bfdbfe; color: #1e3a8a; font-size: .55rem; font-weight: 700; }
+  .signer-avatar-alt { background: #bbf7d0; color: #14532d; }
+  .signer-check { margin-left: -.2rem; color: #34d399; }
+  .activity-panel { padding: 1rem 1.1rem 1.2rem; border-top: 1px solid var(--color-line); }
+  .activity-heading { display: flex; justify-content: space-between; align-items: center; gap: .5rem; font-size: .78rem; font-weight: 550; }
+  .status-pill { display: inline-flex; align-items: center; gap: .4rem; padding: .35rem .55rem; border-radius: 99px; background: rgba(52,211,153,.1); color: #86efac; font-size: .62rem; }
+  .status-pill i { width: 6px; height: 6px; border-radius: 50%; background: #34d399; }
+  .activity-list { display: grid; gap: .8rem; margin: 1rem 0; padding: 0; list-style: none; }
+  .activity-list li { display: grid; grid-template-columns: 2.65rem 1rem 1fr; align-items: start; gap: .45rem; color: var(--color-fg-2); }
+  .activity-list time { padding-top: .1rem; color: var(--color-fg-3); font: .62rem var(--font-mono); }
+  .activity-node { position: relative; display: flex; justify-content: center; height: 2.4rem; }
+  .activity-node::after { position: absolute; top: .55rem; bottom: -.65rem; width: 1px; content: ''; background: rgba(255,255,255,.1); }
+  .activity-list li:last-child .activity-node::after { display: none; }
+  .activity-node i { position: relative; z-index: 1; width: 7px; height: 7px; margin-top: .25rem; border-radius: 50%; background: var(--color-accent-2); box-shadow: 0 0 10px rgba(96,165,250,.5); }
+  .activity-list b { display: block; color: var(--color-fg); font-size: .68rem; font-weight: 550; }
+  .activity-list small { display: block; margin-top: .14rem; color: var(--color-fg-3); font-size: .62rem; }
+  .activity-foot { display: flex; align-items: center; gap: .5rem; color: var(--color-accent-2); font-size: .66rem; }
+  .product-caption { display: flex; align-items: center; gap: .5rem; padding: .75rem 1.1rem; border-top: 1px solid var(--color-line); color: var(--color-fg-3); font: .62rem var(--font-mono); letter-spacing: .06em; text-transform: uppercase; }
+  .caption-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--color-accent-2); }
+  .promise-strip { border-block: 1px solid var(--color-line); background: rgba(255,255,255,.012); }
+  .promise-grid { display: grid; }
+  .promise-item { display: grid; grid-template-columns: 2rem 1fr; gap: .75rem; padding: 1.35rem 0; border-bottom: 1px solid var(--color-line); }
+  .promise-item:last-child { border: 0; }
+  .promise-index { padding-top: .2rem; color: var(--color-accent-2); font: .68rem var(--font-mono); }
+  .promise-item h2 { font-size: .9rem; font-weight: 570; letter-spacing: -.015em; }
+  .promise-item p { max-width: 27rem; margin-top: .25rem; color: var(--color-fg-3); font-size: .82rem; line-height: 1.55; }
+  .process-section { padding-top: clamp(5.5rem, 10vw, 9rem); }
+  .section-heading { max-width: 42rem; }
+  .section-heading .h-section { margin-top: 1rem; }
+  .section-heading .lead { margin-top: 1rem; }
+  .process-grid { display: grid; gap: .85rem; margin: 2.8rem 0 0; padding: 0; list-style: none; }
+  .process-card { position: relative; min-height: 13rem; padding: 1.35rem; border: 1px solid var(--color-line); border-radius: 1rem; background: linear-gradient(145deg, rgba(255,255,255,.035), rgba(255,255,255,.012)); }
+  .process-card-top { display: flex; align-items: center; justify-content: space-between; }
+  .process-icon,.capability-icon { display: grid; place-items: center; width: 2.7rem; height: 2.7rem; border: 1px solid rgba(96,165,250,.22); border-radius: .85rem; background: rgba(37,99,235,.11); color: var(--color-accent-2); }
+  .process-num,.capability-index { color: var(--color-fg-3); font: .68rem var(--font-mono); }
+  .process-card h3 { margin-top: 1.5rem; font-size: 1.06rem; font-weight: 570; letter-spacing: -.025em; }
+  .process-card p { max-width: 25rem; margin-top: .5rem; color: var(--color-fg-2); font-size: .86rem; line-height: 1.6; }
+  .process-arrow { display: none; position: absolute; top: 2rem; right: -1.1rem; z-index: 1; color: var(--color-accent-2); }
+  .capability-section { padding-top: clamp(5.5rem, 10vw, 9rem); }
+  .capability-head { display: grid; align-items: end; gap: 1rem; }
+  .capability-head .h-section { margin-top: 1rem; }
+  .capability-head .lead { max-width: 29rem; }
+  .capability-grid { display: grid; gap: .7rem; margin-top: 2.4rem; }
+  .capability-card { display: grid; grid-template-columns: 2rem 2.7rem 1fr 1rem; align-items: center; gap: .75rem; min-height: 6.8rem; padding: 1rem; border: 1px solid var(--color-line); border-radius: .9rem; background: var(--color-surface); transition: background .25s, border-color .25s, transform .25s; }
+  @media (hover:hover) { .capability-card:hover { transform: translateY(-2px); border-color: rgba(96,165,250,.35); background: #14243a; } }
+  .capability-copy b { display: block; font-size: .9rem; font-weight: 570; }
+  .capability-copy small { display: block; margin-top: .25rem; color: var(--color-fg-3); font-size: .76rem; line-height: 1.45; }
+  .capability-arrow { color: var(--color-fg-3); }
+  .capability-all { display: flex; flex-wrap: wrap; gap: .8rem 1.25rem; align-items: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--color-line); color: var(--color-fg-3); font-size: .74rem; }
+  .capability-all a { display: inline-flex; align-items: center; gap: .35rem; color: var(--color-fg-2); transition: color .2s; }
+  .capability-all a:hover { color: var(--color-accent-2); }
+  .lifecycle-section { overflow: hidden; padding-block: clamp(5rem, 9vw, 8rem); background: linear-gradient(105deg, rgba(37,99,235,.1), transparent 60%); }
+  .lifecycle-grid { display: grid; align-items: center; gap: 2.5rem; }
+  .lifecycle-copy { max-width: 35rem; }
+  .lifecycle-copy .h-section { margin-top: 1rem; }
+  .lifecycle-copy .lead { margin-top: 1rem; }
+  .lifecycle-copy .home-text-link { margin-top: 1.5rem; }
+  .obligation-card { overflow: hidden; border: 1px solid var(--color-line-strong); border-radius: 1rem; background: rgba(16,29,48,.9); box-shadow: 0 24px 70px -50px rgba(37,99,235,.7); }
+  .obligation-head { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.15rem; border-bottom: 1px solid var(--color-line); color: var(--color-fg-2); font-size: .76rem; }
+  .obligation-head svg { color: var(--color-fg-3); }
+  .obligation-card ol { display: grid; gap: 0; margin: 0; padding: 0 1.15rem; list-style: none; }
+  .obligation-row { display: grid; grid-template-columns: 2rem 1fr 1.2rem; align-items: center; gap: .7rem; min-height: 4.4rem; border-bottom: 1px solid var(--color-line); }
+  .obligation-last { border: 0; }
+  .obligation-num { color: var(--color-accent-2); font: .67rem var(--font-mono); }
+  .obligation-row b { display: block; font-size: .77rem; font-weight: 550; }
+  .obligation-row small { display: block; margin-top: .25rem; color: var(--color-fg-3); font-size: .65rem; }
+  .obligation-row > svg { color: var(--color-accent-2); }
+  .obligation-note { display: flex; align-items: center; gap: .4rem; padding: .8rem 1.15rem; border-top: 1px solid var(--color-line); color: var(--color-fg-3); font-size: .62rem; }
+  .closing-section { padding-top: 0; padding-bottom: clamp(5rem, 10vw, 9rem); }
+  .closing-card { position: relative; overflow: hidden; padding: clamp(2.3rem, 6vw, 5rem); border: 1px solid rgba(96,165,250,.22); border-radius: 1.4rem; background: radial-gradient(90% 130% at 100% 0%, rgba(37,99,235,.24), transparent 60%), #101d30; }
+  .closing-card::after { position: absolute; top: -8rem; right: -7rem; width: 20rem; height: 20rem; border: 1px solid rgba(191,219,254,.12); border-radius: 50%; content: ''; box-shadow: 0 0 0 2.5rem rgba(191,219,254,.025), 0 0 0 5rem rgba(191,219,254,.02); }
+  .closing-mark { display: grid; place-items: center; width: 3.5rem; height: 3.5rem; margin-bottom: 1.6rem; border-radius: 1rem; background: #2563eb; color: white; }
+  .closing-card .eyebrow { color: var(--color-accent-2); }
+  .closing-card h2 { position: relative; z-index: 1; max-width: 16ch; margin-top: .9rem; font-size: clamp(2.2rem, 5vw, 4.1rem); font-weight: 570; line-height: 1.02; letter-spacing: -.05em; text-wrap: balance; }
+  .closing-card > p:not(.eyebrow) { position: relative; z-index: 1; max-width: 36rem; margin-top: 1rem; color: var(--color-fg-2); font-size: 1rem; line-height: 1.65; }
+  .home-actions-center { position: relative; z-index: 1; }
+  @media (min-width: 640px) {
+    .product-body { grid-template-columns: minmax(0,1.12fr) minmax(13rem,.88fr); }
+    .activity-panel { border-top: 0; border-left: 1px solid var(--color-line); }
+    .paper { min-height: 20rem; }
+    .promise-grid { grid-template-columns: repeat(3,1fr); }
+    .promise-item { grid-template-columns: 1.5rem 1fr; padding: 1.45rem .9rem; border-right: 1px solid var(--color-line); border-bottom: 0; }
+    .promise-item:first-child { padding-left: 0; }
+    .promise-item:last-child { border-right: 0; }
+    .process-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    .capability-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  }
+  @media (min-width: 768px) {
+    .home-hero-grid { grid-template-columns: minmax(0,.92fr) minmax(0,1.08fr); }
+    .process-grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
+    .process-arrow { display: block; }
+    .capability-head { grid-template-columns: minmax(0,1fr) minmax(16rem,.6fr); }
+    .lifecycle-grid { grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr); gap: clamp(3rem,8vw,7rem); }
+    .closing-card { min-height: 24rem; }
+  }
+  @media (max-width: 420px) {
+    .home-hero { padding-top: 7rem; }
+    .home-title { font-size: clamp(2.5rem, 12vw, 3rem); }
+    .home-actions { align-items: flex-start; flex-direction: column; gap: 1rem; }
+    .capability-card { grid-template-columns: 1.45rem 2.35rem 1fr .85rem; gap: .55rem; padding: .85rem .7rem; }
+    .capability-icon { width: 2.35rem; height: 2.35rem; }
+    .capability-copy small { font-size: .7rem; }
+    .closing-card .home-actions { align-items: flex-start; }
+    .product-topbar { padding-inline: .8rem; }
+    .document-panel { padding-inline: .8rem; }
+    .signer-row { font-size: .62rem; }
+  }
+</style>

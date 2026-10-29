@@ -47,5 +47,5 @@ export async function freezeAnimations(page: Page) {
   });
 }
 
-/** Regiones que cambian solas (loop del board, timer en vivo): se enmascaran en las capturas. */
-export const dynamicRegions = (page: Page) => [page.locator('[data-hero-stage]'), page.locator('[data-timer]')];
+/** La home usa una demo estática; no hay regiones dinámicas que enmascarar. */
+export const dynamicRegions = (_page: Page) => [];

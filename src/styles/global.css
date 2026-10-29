@@ -86,10 +86,6 @@ body {
   background: linear-gradient(180deg, #fff 0%, #fff 30%, rgba(255, 255, 255, 0.55) 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
-.grad-accent {
-  background: linear-gradient(100deg, #bfdbfe 0%, #60a5fa 45%, #2563eb 100%);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-}
 
 /* ---------- buttons ---------- */
 .btn {
@@ -170,13 +166,6 @@ body {
 .js-motion [data-reveal] { opacity: 0; transform: translateY(28px); will-change: transform, opacity; }
 .js-motion .split-line { display: block; overflow: hidden; padding-bottom: 0.12em; margin-bottom: -0.12em; }
 .js-motion .split-line > span { display: inline-block; transform: translateY(110%); will-change: transform; }
-
-@keyframes float-a { 0%,100% { transform: translate3d(0,0,0) rotate(var(--r,0deg)); } 50% { transform: translate3d(0,-22px,0) rotate(calc(var(--r,0deg) + 4deg)); } }
-@keyframes drift { 0% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(4%,-6%,0) scale(1.12); } 100% { transform: translate3d(0,0,0) scale(1); } }
-@keyframes marquee { to { transform: translateX(-50%); } }
-@keyframes blink { 50% { opacity: 0; } }
-@keyframes pulse-ring { 0% { transform: scale(.6); opacity: .8; } 100% { transform: scale(2.4); opacity: 0; } }
-@keyframes shimmer { to { background-position: -200% 0; } }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }

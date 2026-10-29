@@ -14,34 +14,22 @@ for (const p of allPages) {
     const lenis = await page.evaluate(() => document.documentElement.classList.contains('lenis'));
     expect(lenis, 'Lenis inicializado').toBe(!reducedMotion);
 
-    // recorrer la página dispara los ScrollTrigger (reveals, flow, bento) y deja todo visible
+    // recorrer la página dispara los ScrollTrigger de entrada y deja todo visible
     await settleAnimations(page);
     expect(errors).toEqual([]);
   });
 }
 
-test.describe('home · ScrollTrigger', () => {
+test.describe('home · movimiento', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
     await waitForMotionReady(page);
   });
 
-  test('Showcase: pin en desktop, tabs en móvil/tablet', async ({ page }, info) => {
-    const width = info.project.use.viewport?.width ?? 1280;
-    const showcase = page.locator('[data-showcase]');
-    if (width >= 1024 && !reducedMotion) {
-      // gsap.matchMedia('(min-width: 1024px)') crea el pin → ScrollTrigger envuelve el sticky en .pin-spacer
-      await expect(page.locator('.pin-spacer [data-sc-sticky]')).toHaveCount(1);
-      const spacer = page.locator('.pin-spacer');
-      const box = await spacer.boundingBox();
-      // a mitad del recorrido pinneado el paso activo avanza (setStep en onUpdate)
-      await page.evaluate((y) => window.scrollTo(0, y), Math.round(box!.y + box!.height * 0.6));
-      await expect(showcase).not.toHaveAttribute('data-active', '0');
-    } else {
-      await expect(page.locator('.pin-spacer')).toHaveCount(0);
-      await page.locator('[data-step="2"]').click();
-      await expect(showcase).toHaveAttribute('data-active', '2');
-    }
+  test('la demo del documento y las etapas quedan disponibles', async ({ page }) => {
+    await expect(page.locator('.hero-product')).toBeVisible();
+    await expect(page.locator('.process-card')).toHaveCount(4);
+    await expect(page.locator('.obligation-card')).toBeVisible();
   });
 
   test('reduced motion: sin Lenis y contenido visible sin scrollear', async ({ page }) => {

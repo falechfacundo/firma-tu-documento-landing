@@ -26,11 +26,11 @@ Dispositivos (projects): `iphone-se` (320px, WebKit), `iphone-14` (390, WebKit),
 
 | Archivo | Verifica | Alcance |
 |---|---|---|
-| `responsive.spec.ts` | `scrollWidth ≤ clientWidth` **y** que ningún elemento se salga del viewport sin un ancestro que lo recorte (el `overflow-x: clip` del body oculta desbordes) | 40 páginas × 6 dispositivos |
+| `responsive.spec.ts` | `scrollWidth ≤ clientWidth` **y** que ningún elemento se salga del viewport sin un ancestro que lo recorte (el `overflow-x: clip` del body oculta desbordes) | 28 páginas × 6 dispositivos |
 | `mobile-nav.spec.ts` | Menú: abre/cierra, queda encima, bloquea scroll (`overflow`, `inert`, Lenis frenado), foco, cierre al navegar; rueda dentro del menú a 900px | Dispositivos < 1024px (+ regresión de rueda en desktop-chrome) |
-| `touch-targets.spec.ts` | Links/botones ≥ 44×44 (excepción WCAG: links dentro de una oración) | 40 páginas × dispositivos táctiles |
-| `visual.spec.ts` (`@visual`) | Captura full-page por dispositivo, con fuentes cargadas, animaciones resueltas y board/timer enmascarados | 9 páginas clave |
-| `animations.spec.ts` | Sin errores de consola/JS al recorrer cada página; Lenis inicializado; pin del Showcase en desktop y tabs en móvil | 40 páginas × 6 dispositivos |
+| `touch-targets.spec.ts` | Links/botones ≥ 44×44 (excepción WCAG: links dentro de una oración) | 28 páginas × dispositivos táctiles |
+| `visual.spec.ts` (`@visual`) | Captura full-page por dispositivo, con fuentes cargadas y animaciones resueltas | 9 páginas clave |
+| `animations.spec.ts` | Sin errores de consola/JS al recorrer cada página; Lenis inicializado; demo de documento y recorrido de pasos visibles | 28 páginas × 6 dispositivos |
 
 Helpers en `tests/helpers/`: `pages.ts` (rutas desde `src/i18n/routes.ts` y `src/content/blog`), `motion.ts`
 (`waitForFonts`, `waitForMotionReady`, `settleAnimations`, `freezeAnimations`), `errors.ts`, `viewport.ts`.
@@ -101,11 +101,11 @@ Si se rompe:
 Los navegadores headless no reproducen todo. Antes de un release con cambios de layout o animación:
 
 - [ ] **Scroll con Lenis** en desktop (rueda y trackpad): suave, sin saltos, anclas (`#producto`) con offset correcto.
-- [ ] **Safari iOS, barra dinámica**: al scrollear y al aparecer/ocultarse la barra, el pin del Showcase (iPad horizontal) y el tilt del hero no saltan.
+- [ ] **Safari iOS, barra dinámica**: revisar la estabilidad del nav fijo al aparecer u ocultarse la barra del navegador.
 - [ ] **Rubber-band iOS**: con el menú abierto el fondo no se mueve; al cerrar, la posición se mantiene.
 - [ ] **Menú móvil**: abre/cierra, scroll interno, Escape (teclado externo), links navegan.
 - [ ] **Landscape** en teléfono (ej. 740×360): nav, hero, menú y CTAs utilizables.
 - [ ] **Tablet ≥ 1024px** (iPad horizontal): dropdowns del nav se abren y cierran con toques.
-- [ ] **Gama media Android**: fluidez del board del hero, reveals y Flow; sin tirones con el nav en modo glass.
+- [ ] **Gama media Android**: fluidez del mock de documento, reveals y scroll con el nav en modo glass.
 - [ ] **Reduced motion** activado en el sistema: todo visible, sin Lenis ni reveals.
 - [ ] **Red lenta** (DevTools: Slow 4G): el hero aparece rápido y nunca queda en blanco.
